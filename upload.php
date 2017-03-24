@@ -16,6 +16,19 @@
 include("hauptseiteupload.php")
 ?>
 
+<?php
+    $ziel = "upload/";
+    $zieldatei = $ziel.basename($_FILES["import"]["name"]);
+    if (move_uploaded_file($_FILES["import"]["tmp_name"], $zieldatei)) {
+        echo "Datei erfolgreich hochgeladen";
+    }
+    else {
+        echo "Fehler";
+    }
+    
+  ?> 
+ 
+ 
   <p class="bg-success">
 <?php 
  
