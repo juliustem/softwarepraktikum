@@ -62,7 +62,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 	$ziel = "upload/"; //fuer opendir
 	$count = 0;
 	
-	
+	//neuen Unterordner
     mkdir("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/hochladen$uhrzeit", 0777, true);
     chmod("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/hochladen$uhrzeit", 0777); //0777 gibt alle Rechte
     $ziel2= "upload/Hochladen$uhrzeit/";// Upload directory 
@@ -99,9 +99,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 	            	              	            
 	          	echo "<br /> ✔ Erfolgreich: $name<br />";
 	          	echo "<br />";
-	        	}
-	    	}
-		}
+	       }
+	    }
+	}
 		
 		
 //Rscript exec:??
