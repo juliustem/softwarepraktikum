@@ -62,10 +62,10 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 	$ziel = "upload/"; //fuer opendir
 	$count = 0;
 	
-	//neuen Unterordner
-    mkdir("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/hochladen$uhrzeit", 0777, true);
-    chmod("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/hochladen$uhrzeit", 0777); //0777 gibt alle Rechte
-    $ziel2= "upload/Hochladen$uhrzeit/";// Upload directory 
+    	//neuen Unterordner
+    	mkdir("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/hochladen$uhrzeit", 0777, true);
+    	chmod("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/hochladen$uhrzeit", 0777); //0777 gibt alle Rechte
+    	$ziel2= "upload/Hochladen$uhrzeit/";// Upload directory 
         
         
 	// Schleife, damit alle Files hochgeladen werden
@@ -86,6 +86,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 				echo  "<br />Achtung: $name wird nicht akzeptiert<br />";
 				echo "<br />";
 				continue; // ueberspringt die nicht akzeptierten formate
+					
 				}
 				
 				else{ 
@@ -94,12 +95,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
 <p class="bg-success">    
 <?php		
-	            if(move_uploaded_file($_FILES["files"]["tmp_name"][$f], $ziel2.$name))
-	            $count++; // Zaehlt, wieviele erfolgreich hochgeladen wurden, vllt brauchen wir das irgendwann
+	            			if(move_uploaded_file($_FILES["files"]["tmp_name"][$f], $ziel2.$name))
+	            			$count++; // Zaehlt, wieviele erfolgreich hochgeladen wurden, vllt brauchen wir das irgendwann
 	            	              	            
-	          	echo "<br /> ✔ Erfolgreich: $name<br />";
-	          	echo "<br />";
-	       }
+	          				echo "<br /> ✔ Erfolgreich: $name<br />";
+	          				echo "<br />";
+			
+				}
 	    }
 	}
 		
@@ -109,10 +111,10 @@ exec("/usr/local/bin/Rscript myr2.R $ziel2");
 
 echo "<h3>Bisher hochgeladene Dateien</h3>";
 $verzeichnis=opendir($ziel);
-while ($file = readdir($verzeichnis))
-{
+	while ($file = readdir($verzeichnis))
+	{
                 echo "<a href='$ziel/$file' target=_blank>$file</a><br>"; 
-}
+	}
 closedir($verzeichnis);
 
 ?>
