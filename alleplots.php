@@ -33,16 +33,16 @@ form
     </div>
     
 <?php
-
+ini_set("max_execution_time", 300);
 
 session_start();
-$_SESSION["bool2"]=1;
+$_SESSION["bool5"]=1;
 $output_path = $_SESSION["p_path"] . "output/";
 $in = $_SESSION["count_files"];
 $p = $_SESSION["curr_path"];
 $u = $_SESSION["p_path"];
 
-exec("/usr/local/bin/Rscript myr3.R $in $p $output_path > /dev/null 2>/dev/null &");
+exec("/usr/local/bin/Rscript myralle.R $in $p $output_path > /dev/null 2>/dev/null &");
 
 ?>
 

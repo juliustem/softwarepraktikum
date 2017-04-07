@@ -23,6 +23,8 @@ library(bioDist)
 library(qcc)
 #library(made4)
 #library(ade4)
+library(NMF)
+library(hugene20sttranscriptcluster.db)
 
 Data2 <- ReadAffy()
 

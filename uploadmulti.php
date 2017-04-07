@@ -48,14 +48,35 @@ form
  
   <form id="uploadForm" action="" method="post" enctype="multipart/form-data">
        <input name="uploads[]" id="userImage" type="file" multiple class="demoInputBox"/>
-       <input type="submit" value="Hochladen" class="btnSubmit"/>
+       <input type="submit" name="u_button" value="Hochladen" class="btnSubmit"/>
   </form>
 
 
-  <?php
+  <?php  
+echo "<br>";
+echo "<h3> Bereits hochgeladene Experimente </h3>";
+$old_exp = "upload/";
+$verzeichnis = opendir($old_exp);
+  while($Ordner = readdir($verzeichnis)){
+
+    if ($Ordner != "." && $Ordner != ".." && $Ordner != ".DS_Store"){
+
+    echo "<a href='$old_exp/$Ordner' target=_blank>$Ordner</a><br>";
+    
+
+    echo "<form action='plot_auswahl.php' method='post' >";
+    echo "<input type='submit' value='Mit diesem Experiment weiterarbeiten' class='btnSubmit'>";
+    echo "</form>";
+    }
+  }
+closedir($verzeichnis);
+
+?>
+
+<?php
 
 //Abschalter der warnings für mkdir()
-error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+//error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
 // Funktion zur überprüfung der Dateiendung
 function getExtension($name)
@@ -74,6 +95,17 @@ $i                 = 0;
 
 
 foreach ($_FILES as $file):
+   
+//Verzeichnis erstellen
+        $name     = date('d-m-y_h-i-s'); // $name = Ordnername
+        $pre_path = "upload/" . $name . "/";
+        mkdir($pre_path, 0777, true);
+        chmod($pre_path, 0777);
+        $upload_path = $pre_path . "input/";
+        mkdir($upload_path, 0777, true);
+        chmod($upload_path, 0777);
+ 
+    
     foreach ($file['name'] as $filename):
         $extension = getExtension($filename);
         
@@ -97,18 +129,6 @@ foreach ($_FILES as $file):
  
  ?>	
 </p>
-<?php       
-        //Verzeichnis erstellen
-        $name     = date('d-m-y_h-i-s'); // $name = Ordnername
-        $pre_path = "upload/" . $name . "/";
-        mkdir($pre_path, 0777, true);
-        chmod($pre_path, 0777);
-        $upload_path = $pre_path . "input/";
-        mkdir($upload_path, 0777, true);
-        chmod($upload_path, 0777);
-  
- ?>	
-
 
 <p class="bg-success">    
 <?php
@@ -132,6 +152,12 @@ foreach ($_FILES as $file):
   
   //Fürs Speichern der Variablen, während der Sitzung   
     session_start();
+    $_SESSION["bool1"]=0;
+    $_SESSION["bool2"]=0;
+    $_SESSION["bool3"]=0;
+    $_SESSION["bool4"]=0;
+    $_SESSION["bool5"]=0;
+    
     $_SESSION["p_path"] = $pre_path;
     $_SESSION["curr_path"]= $upload_path;
     $_SESSION["count_files"]= $i;

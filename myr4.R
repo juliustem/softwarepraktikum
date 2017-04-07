@@ -19,20 +19,22 @@ library(affydata)
 library(affyio)
 library(simpleaffy)
 library(sm)
-#library(BH)
+library(BH)
 library(bioDist)
 library(MVA)
 library(qcc)
 #library(made4)
-#library(ade4)
+library(ade4)
+library(NMF)
+library(hugene20sttranscriptcluster.db)
 
 Data2 <- ReadAffy()
 
 setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery")
 
 setwd(O)
-png(filename="heatspearman.png", pointsize = 10, width = 500, height = 500)
-heatmap(cor(exprs(Data2), method = "spearman")) #mit Legende
+png(filename="heatspearman.png")
+aheatmap(cor(exprs(Data2), method = "spearman")) #mit Legende
 title(main="Heatmap Spearman")
 dev.off()
 

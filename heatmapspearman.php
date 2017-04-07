@@ -36,13 +36,13 @@ form
 
 
 session_start();
-
+$_SESSION["bool3"]=1;
 $output_path = $_SESSION["p_path"] . "output/";
 $in = $_SESSION["count_files"];
 $p = $_SESSION["curr_path"];
 $u = $_SESSION["p_path"];
 
-exec("/usr/local/bin/Rscript myr4.R $in $p $output_path");
+exec("/usr/local/bin/Rscript myr4.R $in $p $output_path > /dev/null 2>/dev/null &");
 
 ?>
 

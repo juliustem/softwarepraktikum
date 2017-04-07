@@ -48,14 +48,17 @@ $out_f = $_SESSION["name"];
 $folder = $oberordner;
 $zip_name = $out_f . ".zip";
 
-// file und dir counter
+/* file und dir counter
 $fc = 0;
 $dc = 0;
+*/
 
 // die maximale Ausführzeit erhöhen
 ini_set("max_execution_time", 300);
 
-// Objekt erstellen und schauen, ob der Server zippen kann
+exec("zip -r $zip_name $oberordner");
+
+/* Objekt erstellen und schauen, ob der Server zippen kann
 $zip = new ZipArchive();
 if ($zip->open($zip_name, ZIPARCHIVE::CREATE) !== TRUE) {
     die ("Das Archiv konnte nicht erstellt werden!");
@@ -94,6 +97,7 @@ $zip->close();
 // Bericht
 echo "<p>Ordner: " . $dc . "</br>";
 echo "Dateien: " . $fc . "</p>";
+*/
 
 // Download
  if (file_exists($zip_name)) {
@@ -101,6 +105,12 @@ echo "Dateien: " . $fc . "</p>";
  }
 
 ?>
+
+<!-- Weitere Optionen -->
+
+ <form action='plot_auswahl.php' method='post' >
+        <input type='submit' value='Zurück zur Plotauswahl' class='btnSubmit2' >
+</form>
 
  <form action='uploadmulti.php' method='post' >
     <input type='submit' value='Zurück zu Upload' class='btnSubmit3' >
