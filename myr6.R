@@ -30,6 +30,9 @@ library(hugene20sttranscriptcluster.db)
 
 Data <- ReadAffy()
 
+setwd("..")
+
+setwd("output")
 
 
 #source("/Users/evka/Documents/Softwarepraktikum_Gruppe_1/r_script/affyAnalysisQC_web.R")
