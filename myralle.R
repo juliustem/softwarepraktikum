@@ -55,7 +55,7 @@ dev.next()
 
 png(filename="heatpearson.png")
 aheatmap(cor(exprs(Data2), method = "pearson")) #mit Legende
-title(main="Heatmap Spearman")
+title(main="Heatmap Pearson")
 
 dev.next()
 
