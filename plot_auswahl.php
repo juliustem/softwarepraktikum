@@ -13,8 +13,7 @@
 .btnSubmit3{background-color:#000066;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 .btnSubmitgreen{background-color:#90EE90;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 .btnSubmit5{background-color:#FFB6C1;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
-.btnSubmityellow{background-color:#CCCC00;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
-.btnSubmitblue{background-color:#0000FF;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
+.btnSubmityellow{background-color:#FFA500;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 
 body
 {
@@ -35,10 +34,13 @@ form
 <!-- Überschrift -->
   <div class="container-fluid">
     <div class="jumbotron">
-      <h1>Erstellen der statistischen Plots</h1>
+      <h2>Erstellen der statistischen Plots</h2>
+      <p>Wählen Sie einzelne Plots oder das Gesamtpaket aus und laden Sie diese anschließend herunter.</p>
       <p><FONT COLOR="#90EE90">grün</FONT> = Bereits erstellt</p>
       <p><FONT COLOR="#CCCC00">gelb</FONT> = Wird erstellt</p>
     </div>
+
+
 <?php
 
 ini_set("max_execution_time", 300);
@@ -55,20 +57,15 @@ function c_files($folder){
 closedir($handle);
 return $anz-2; //wegen "." und ".."
 }
-
-
-SESSION_START();
+session_start();
 $c = $_SESSION["c_glob"];
-
 $old_exp     = "upload/";
 $verzeichnis = opendir($old_exp);
-
 //Variablen aus der uploadmulti.php, falls altes Experiment gewählt wurde
 for($i=1; $i<$c+1; ++$i){
     if (isset($_POST["button".$i])){
       // echo "BUTTON $i WURDE GEDRÜCKT! <br />";
       $j=1;
-
       while ($Ordner = readdir($verzeichnis)){
         if ($j<($i+1)){
           if ($Ordner != "." && $Ordner != ".." && $Ordner != ".DS_Store") {
@@ -82,11 +79,17 @@ for($i=1; $i<$c+1; ++$i){
       }
       }
     }
-
 }
 closedir($verzeichnis);
 
-// Variablen aus der uploadmulti.php, falls neues Experiment
+$var1 = $_SESSION["bool1"];
+$var2 = $_SESSION["bool2"];
+$var3 = $_SESSION["bool3"];
+$var4 = $_SESSION["bool4"];
+$var5 = $_SESSION["bool5"];
+$var6 = $_SESSION["bool6"];
+$var7 = $_SESSION["bool7"];
+
 $N = $_SESSION["count_files"];
 $C = $_SESSION["curr_path"];
 $P = $_SESSION["p_path"]; //gibt Pfad des Ordners mit input + output an
@@ -95,54 +98,16 @@ echo "Aktuelles ausgewähltes Experiment: $F <br />";
 $out = $P . "output/";
 @mkdir($out, 0777); //output Ordner erstellen
 
-// Werte für die Farben der Buttons importieren
-$var1 = $_SESSION["bool1"];
-$var2 = $_SESSION["bool2"];
-$var3 = $_SESSION["bool3"];
-$var4 = $_SESSION["bool4"];
-$var5 = $_SESSION["bool5"];
-
 // Zwischenspeiichern der Variablen für zipdownload.php
 $_SESSION["oberordner"] = $P;
 $_SESSION["name"] = $F;
 
 ?>
 
-<!-- Button für Refresh der Seite -->
+<!-- Zurück zur Startseite -->
     <form action='plot_auswahl.php' method='post' >
-    <input type='submit' value='Status der Plots updaten' class='btnSubmit5' >
+    <input type='submit' value='Aktualisieren' class='btnSubmit5' >
     </form>
-
-
-    <!-- Button für Gesamtpaket -->
-    <?php
-    if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qualitycontrol.png")&&glob($out."heatspearman.png")){
-    ?>
-        <form action='alleplots.php' method='post'>
-          <input type="submit" value="Gesamtpaket aller Plots" class="btnSubmitgreen">
-      </form>
-    <?php
-    }
-
-    elseif($var5==1){
-    ?>
-    <form action='alleplots.php' method='post'>
-          <input type="submit" value="Gesamtpaket aller Plots" class="btnSubmityellow">
-      </form>
-
-    <?php
-    }
-
-     else{
-    ?>
-        <form action='alleplots.php' method='post'>
-          <input type="submit" value="Gesamtpaket aller Plots" class="btnSubmit">
-      </form>
-    <?php
-     }
-    ?>
-
-
 
 <!-- Buttons 1 -->
 <?php
@@ -150,25 +115,26 @@ $_SESSION["name"] = $F;
 if( glob($out."hist.png")){
 ?>
     <form action='histogramm.php' method='post'>
-      <input type="submit" value="Histogramm" class="btnSubmitgreen">
+      <input type="submit" value="Histogramm (Density Plot)" class="btnSubmitgreen">
   </form>
-<?php
 
+<?php
+ 
 }
 
 elseif($var1==1){
 ?>
 <form action='histogramm.php' method='post'>
-      <input type="submit" value="Histogramm" class="btnSubmityellow">
+      <input type="submit" value="Histogramm (Density Plot)" class="btnSubmityellow">
   </form>
-
-<?php
+    
+<?php    
 }
 
  else{
 ?>
     <form action='histogramm.php' method='post'>
-      <input type="submit" value="Histogramm" class="btnSubmit">
+      <input type="submit" value="Histogramm (Density Plot)" class="btnSubmit">
   </form>
 <?php
  }
@@ -190,8 +156,8 @@ elseif($var2==1){
 <form action='qualitycontrol.php' method='post'>
       <input type="submit" value="Quality Control Plot" class="btnSubmityellow">
   </form>
-
-<?php
+    
+<?php    
 }
 
  else{
@@ -220,8 +186,8 @@ elseif($var3==1){
 <form action='heatmapspearman.php' method='post'>
       <input type="submit" value="Heatmap (Spearman)" class="btnSubmityellow">
   </form>
-
-<?php
+    
+<?php    
 }
 
  else{
@@ -233,6 +199,65 @@ elseif($var3==1){
  }
 ?>
 
+<!-- Button 7 -->
+
+<?php
+if( glob($out."heatpearson.png")){
+?>
+    <form action='heatpearson.php' method='post'>
+      <input type="submit" value="Heatmap (Pearson)" class="btnSubmitgreen">
+  </form>
+<?php
+}
+
+elseif($var7==1){
+?>
+<form action='heatpearson.php' method='post'>
+      <input type="submit" value="Heatmap (Pearson)" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='heatpearson.php' method='post'>
+      <input type="submit" value="Heatmap (Pearson)" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
+
+<!-- Button 6 -->
+
+<?php
+if( glob($out."DataPCAnalysis.png")){
+?>
+    <form action='pca.php' method='post'>
+      <input type="submit" value="PCA" class="btnSubmitgreen">
+  </form>
+<?php
+}
+
+elseif($var6==1){
+?>
+<form action='pca.php' method='post'>
+      <input type="submit" value="PCA" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='pca.php' method='post'>
+      <input type="submit" value="PCA" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
+
+    
 <!-- Buttons 4 -->
 
 <?php
@@ -250,8 +275,8 @@ elseif($var4==1){
 <form action='rnadegplot.php' method='post'>
       <input type="submit" value="RNA Degradation Plot" class="btnSubmityellow">
   </form>
-
-<?php
+    
+<?php    
 }
 
  else{
@@ -264,16 +289,52 @@ elseif($var4==1){
 ?>
 
 
+<!-- Button 5 -->
+
+<?php
+if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qualitycontrol.png")&&glob($out."heatspearman.png")&&glob($out."heatpearson.png")){
+?>
+    <form action='alleplots.php' method='post'>
+      <input type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmitgreen">
+  </form>
+<?php
+}
+
+elseif($var5==1){
+?>
+<form action='alleplots.php' method='post'>
+      <input type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='alleplots.php' method='post'>
+      <input type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
+
+
+
+<!-- Zu den Bildern -->
+    <form action='view.php' method='post' >
+    <input type='submit' value='View Images' class='btnSubmit5' >
+    </form>
 <!-- Buttons zum Herunterladen der Erstellten Dateien -->
     <form action='zipdownload.php' method='post' >
-        <input type='submit' value='Die erstellten Plots als ZIP-Archiv herunterladen' class='btnSubmitblue' >
+        <input type='submit' value='Die erstellten Plots als ZIP-Archiv herunterladen' class='btnSubmit2' >
         </form>
-
 <!-- Zurück zur Startseite -->
     <form action='uploadmulti.php' method='post' >
-    <input type='submit' value='Zurück zum Upload' class='btnSubmit' >
+    <input type='submit' value='Zurück zu Upload' class='btnSubmit3' >
     </form>
+    
 
+    
 
 
 

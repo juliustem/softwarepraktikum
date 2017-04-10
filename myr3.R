@@ -28,9 +28,9 @@ library(qcc)
 
 Data2 <- ReadAffy()
 
-setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery")
+setwd("..")
 
-setwd(O)
+setwd("output")
 png(filename="qualitycontrol.png")
 plot.qc.stats(qc(Data2))
 title(main="Quality Control")

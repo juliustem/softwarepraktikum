@@ -26,9 +26,9 @@ library(simpleaffy)
 
 Data2 <- ReadAffy()
 
-setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery")
+setwd("..")
 
-setwd(O)
+setwd("output")
 png(filename="RNA_Degradation_Plot.png")
 deg <- AffyRNAdeg(Data2)
 plotAffyRNAdeg(deg, col=1:N)

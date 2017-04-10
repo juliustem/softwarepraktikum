@@ -33,9 +33,7 @@ Data2 <- ReadAffy()
 setwd("..")
 
 setwd("output")
-png(filename="heatspearman.png")
-aheatmap(cor(exprs(Data2), method = "spearman")) #mit Legende
-title(main="Heatmap Spearman")
+png(filename="heatpearson.png")
+aheatmap(cor(exprs(Data2), method = "pearson")) #mit Legende
+title(main="Heatmap Pearson")
 dev.off()
-
-

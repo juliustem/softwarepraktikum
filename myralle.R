@@ -28,9 +28,9 @@ library(hugene20sttranscriptcluster.db)
 
 Data2 <- ReadAffy()
 
-setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery")
+setwd("..")
 
-setwd(O)
+setwd("output")
 
 
 png(filename="qualitycontrol.png")
@@ -49,6 +49,12 @@ dev.next()
 
 png(filename="heatspearman.png", pointsize = 10, width = 500, height = 500)
 heatmap(cor(exprs(Data2), method = "spearman")) #mit Legende
+title(main="Heatmap Spearman")
+
+dev.next()
+
+png(filename="heatpearson.png")
+aheatmap(cor(exprs(Data2), method = "pearson")) #mit Legende
 title(main="Heatmap Spearman")
 
 dev.next()

@@ -28,9 +28,9 @@ library(simpleaffy)
 
 Data2 <- ReadAffy()
 
-setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery")
+setwd("..")
 
-setwd(O)
+setwd("output")
 png(filename="hist.png")
 hist(Data2[,1:N],col=1:N)
 legend("topright", substr(sampleNames(Data2),1,20), lwd=3, lt = 1:length(sampleNames(Data2)),
