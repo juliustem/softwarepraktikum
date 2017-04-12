@@ -1,0 +1,75 @@
+body{
+  margin-top: 40px
+  font-family: Arial, serif;
+  font-size: 15px;
+}
+
+#menuContainer{
+  width: auto;
+  height: auto;
+  text-align: left;
+  margin: auto;
+}
+
+#menuContainer a{
+  border: #666 1px solid;
+  border-bottom: none;
+  padding-top: 8px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-decoration: none;
+}
+
+#menuContainer a:hover{
+  background-color: #eee;
+  color: #03F
+}
+
+.myButtons{
+  background-color: #036;
+  color: #FFF;
+}
+
+.myActiveButton{
+  background-color: #eee;
+}
+
+#bodyContainer {
+  height: auto;
+  width: auto;
+  border: #666 1px solid;
+  background-color: #eee;
+  margin: auto;
+}
+
+
+#bodyContentContainer{
+  padding: 16px;
+}
+
+/*
+.nav{
+  background-color: #637FC6;
+  color: #000000;
+  list-style: none;
+  text-align: left;
+  padding: 15px 0 15px 0;
+}
+
+.nav > li{
+  display: inline-block;
+  padding-right: 50px;
+  padding-left: 20px;
+}
+
+.nav > li > a{
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav > li > a:hover{
+  color: #FFFFFF;
+}
+
+*/
