@@ -1,7 +1,6 @@
 args <- commandArgs(TRUE)
 N <- args[1]
 P <- args[2]
-O <- args[3]
 
 
 setwd(P)
@@ -15,7 +14,7 @@ library(affy)
 library(affycomp)
 library(affydata)
 library(affyio)
-library(simpleaffy)
+#library(simpleaffy)
 library(sm)
 library(BH)
 library(bioDist)
@@ -30,9 +29,6 @@ library(hugene20sttranscriptcluster.db)
 
 Data <- ReadAffy()
 
-setwd("..")
-
-setwd("output")
 
 
 #source("/Users/evka/Documents/Softwarepraktikum_Gruppe_1/r_script/affyAnalysisQC_web.R")
