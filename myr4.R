@@ -1,15 +1,35 @@
-#setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/30-03-17_04-16-01/input")
 
 args <- commandArgs(TRUE)
 N <- args[1]
 P <- args[2]
-O <- args[3]
 
 
 setwd(P)
 
-library(Biobase)
+
+library(HSAUR2)
+library(IRanges)
+library(pkgmaker)
+library(RColorBrewer)
+library(registry)
+library(rngtools)
+library(S4Vectors)
+library(datasets)
+library(graphics)
+library(grDevices)
+library(KernSmooth)
+library(methods)
+library(parallel)
+library(stats)
+library(stats4)
+library(tools)
+library(utils)
+library(gcrma)
+library(AnnotationDbi)
+library(org.Hs.eg.db)
+
 library(BiocGenerics)
+library(Biobase)
 library(BiocInstaller)
 library(cluster)
 library(genefilter)
@@ -28,11 +48,12 @@ library(ade4)
 library(NMF)
 library(hugene20sttranscriptcluster.db)
 
+
 Data2 <- ReadAffy()
 
 setwd("..")
-
 setwd("output")
+
 png(filename="heatspearman.png")
 aheatmap(cor(exprs(Data2), method = "spearman")) #mit Legende
 title(main="Heatmap Spearman")

@@ -29,9 +29,10 @@ form
 <!-- Überschrift -->
   <div class="container-fluid">
     <div class="jumbotron">
-      <p>Geschafft!</p>
+      <h2>Die Heatmap wird erstellt.</h2>
+      <p>Kehren Sie zurück zur Auswahl der Plots</p>
     </div>
-    
+
 <?php
 
 
@@ -39,13 +40,17 @@ session_start();
 $_SESSION["bool3"]=1;
 $output_path = $_SESSION["p_path"] . "output/";
 $in = $_SESSION["count_files"];
-$p = $_SESSION["curr_path"];
-$u = $_SESSION["p_path"];
+$local = "/opt/lampp/htdocs/Projekte/Softwareprojekt/";
+//$p = $_SESSION["curr_path"];
+$p = $local."upload/".$_SESSION["f_name"]."/input";
+echo "$p";
 
-exec("/usr/local/bin/Rscript myr4.R $in $p $output_path > /dev/null 2>/dev/null &");
+$rfile = $local."myr4.R";
+
+exec("Rscript $rfile $in $p > /dev/null 2>/dev/null &");   // /usr/bin/
 
 ?>
 
- <form action='plot_auswahl.php' method='post' >
-    <input type='submit' value='Zurück zur Auswahl' class='btnSubmit' >
+ <form action='raw.php' method='post' >
+    <input type='submit' value='Zurück' class='btnSubmit' >
     </form>

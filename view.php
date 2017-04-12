@@ -5,6 +5,7 @@
     <title>Mult_Fileupload</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!-- Bootstramp für Container und co -->
     <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet"> <!-- Für farbige Boxen z.B "success" -->
+    <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <style>
@@ -26,7 +27,7 @@ form
 <style>
 
 .btnSubmit3{background-color:#000066;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
-
+.btnSubmit{background-color:#8d8f90;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 
 #myImg {
     border-radius: 5px;
@@ -58,13 +59,6 @@ form
     transition: 0.3s;
 }
 
-#myImg6 {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-
 
 
 #myImg:hover {opacity: 0.7;}
@@ -72,7 +66,6 @@ form
 #myImg3:hover {opacity: 0.7;}
 #myImg4:hover {opacity: 0.7;}
 #myImg5:hover {opacity: 0.7;}
-#myImg6:hover {opacity: 0.7;}
 
 
 /* The Modal (background) */
@@ -111,7 +104,7 @@ form
 }
 
 /* Add Animation */
-.modal-content, #caption {    
+.modal-content, #caption {
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -119,12 +112,12 @@ form
 }
 
 @-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)} 
+    from {-webkit-transform:scale(0)}
     to {-webkit-transform:scale(1)}
 }
 
 @keyframes zoom {
-    from {transform:scale(0)} 
+    from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
@@ -156,13 +149,27 @@ form
 
 <body>
 
-<!-- Überschrift -->
-  <div class="container-fluid">
-    <div class="jumbotron">
-      <h2>Images:</h2>
+  <!-- Überschrift -->
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Erstellen der statistischen Plots</h1>
+        <p>Die Plots können durch Anklicken vergrößert werden.</p>
+        <p> </p>
+      </div>
+
+<!-- Navigations Bar -->
+  <div id="menuContainer">
+    <?php include_once("menu_template.php");
+    ?>
+  </div>
+  <div id="bodyContainer">
+    <div id="bodyContentContainer">
+
+
+
 
 <?php
-ini_set("max_execution_time", 300); 
+ini_set("max_execution_time", 300);
 
 session_start();
 //kriegt wieder die Session Variablen
@@ -174,28 +181,24 @@ $o = $p . "output/";
 
 <?php
 if( glob($o."hist.png")){
-  echo("<img id='myImg' src='$o/hist.png' alt='Histogram' width='300' height='300'>"); 
+  echo("<img id='myImg' src='$o/hist.png' alt='Histogram' width='300' height='300'>");
   }
   if( glob($o."qualitycontrol.png")){
-  echo("<img id='myImg2' src='$o/qualitycontrol.png' alt='Quality Control' width='300' height='300'>"); 
+  echo("<img id='myImg2' src='$o/qualitycontrol.png' alt='Quality Control' width='300' height='300'>");
   }
    if( glob($o."RNA_Degradation_Plot.png")){
-  echo("<img id='myImg3' src='$o/RNA_Degradation_Plot.png' alt='RNA Degradation' width='300' height='300'>"); 
+  echo("<img id='myImg3' src='$o/RNA_Degradation_Plot.png' alt='RNA Degradation' width='300' height='300'>");
   }
    if( glob($o."heatspearman.png")){
-  echo("<img id='myImg4' src='$o/heatspearman.png' alt='Heatmap Spearman' width='300' height='300'>"); 
+  echo("<img id='myImg4' src='$o/heatspearman.png' alt='Heatmap Spearman' width='300' height='300'>");
   }
    if( glob($o."heatpearson.png")){
-  echo("<img id='myImg5' src='$o/heatpearson.png' alt='Heatmap Pearson' width='300' height='300'>"); 
+  echo("<img id='myImg5' src='$o/heatpearson.png' alt='Heatmap Pearson' width='300' height='300'>");
   }
-   if( glob($o."Rohcluster.png")){
-  echo("<img id='myImg6' src='$o/Rohcluster.png' alt='Clusterdiagramm (Rohdaten)' width='300' height='300'>"); 
-  }
-  
 
 
-  
-?>  
+
+?>
 
 
   <div id="myModal" class="modal">
@@ -225,7 +228,7 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+span.onclick = function() {
     modal.style.display = "none";
 }
 </script>
@@ -251,7 +254,7 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+span.onclick = function() {
     modal.style.display = "none";
 }
 </script>
@@ -277,7 +280,7 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+span.onclick = function() {
     modal.style.display = "none";
 }
 </script>
@@ -303,7 +306,7 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+span.onclick = function() {
     modal.style.display = "none";
 }
 </script>
@@ -329,44 +332,15 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-    modal.style.display = "none";
-}
-</script>
-
-<!-- Für Clusterdiagramm -->
- <script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('myImg6');
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-
-img.onclick = function(){
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+span.onclick = function() {
     modal.style.display = "none";
 }
 </script>
 
 
-<!-- Zurück zur Startseite -->
-    <form action='plot_auswahl.php' method='post' >
-    <input type='submit' value='Zurück zu Plotauswahl' class='btnSubmit3' >
-    </form>
-    
-</form>
 
+</div>
+</div>
 
 </body>
 </html>

@@ -29,9 +29,10 @@ form
 <!-- Überschrift -->
   <div class="container-fluid">
     <div class="jumbotron">
-      <p>Geschafft!</p>
+      <h2>Das Histogramm wird erstellt.</h2>
+      <p>Kehren Sie zurück zur Auswahl der Plots</p>
     </div>
-    
+
 <?php
 
 
@@ -41,12 +42,12 @@ $_SESSION["bool1"]=1;
 $output_path = $_SESSION["p_path"] . "output/";
 $in = $_SESSION["count_files"];
 $p = $_SESSION["curr_path"];
-$u = $_SESSION["p_path"];
+$f = $_SESSION["p_path"];
 
-exec("/usr/local/bin/Rscript myr2.R $in $p $output_path > /dev/null 2>/dev/null &");
+exec("Rscript myr2.R $in $p > /dev/null 2>/dev/null &");  ///opt/lampp/htdocs/Projekte/Softwareprojekt/
 
 ?>
 
- <form action='plot_auswahl.php' method='post' >
-    <input type='submit' value='Zurück zur Auswahl' class='btnSubmit' >
+ <form action='raw.php' method='post' >
+    <input type='submit' value='Zurück' class='btnSubmit' >
     </form>

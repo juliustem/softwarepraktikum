@@ -5,6 +5,7 @@
     <title>Mult_Fileupload</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!-- Bootstramp für Container und co -->
     <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet"> <!-- Für farbige Boxen z.B "success" -->
+    <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <style>
@@ -28,16 +29,24 @@ form
 
 <body>
 
-<!-- Überschrift -->
-  <div class="container-fluid">
-    <div class="jumbotron">
-      <p>ZIP Ordner anklicken und herunterladen</p>
-    </div>
+  <!-- Überschrift -->
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Erstellen der statistischen Plots</h1>
+        <p>ZIP Ordner anklicken und herunterladen.</p>
+        <p> </p>
+      </div>
+
+<!-- Navigations Bar -->
+  <div id="menuContainer">
+    <?php include_once("menu_template.php");
+    ?>
+  </div>
+  <div id="bodyContainer">
+    <div id="bodyContentContainer">
 
 
 <?php
-
-// echo "Du bist jetzt in der Zipdownload-Datei!!";
 
 // Variablen aus der execR.php
 SESSION_START();
@@ -106,12 +115,7 @@ echo "Dateien: " . $fc . "</p>";
 
 ?>
 
-<!-- Weitere Optionen -->
+</div>
+</div>
 
- <form action='plot_auswahl.php' method='post' >
-        <input type='submit' value='Zurück zur Plotauswahl' class='btnSubmit2' >
-</form>
-
- <form action='uploadmulti.php' method='post' >
-    <input type='submit' value='Zurück zu Upload' class='btnSubmit3' >
-    </form>
+</body>
