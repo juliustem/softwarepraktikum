@@ -59,6 +59,14 @@ title(main="Heatmap Pearson")
 
 dev.next()
 
+png(filename="Rohcluster.png")
+dat <- exprs(Data)
+d <- dist(t(dat))
+hc <- hclust(d, method = "complete")
+plot(hc)
+
+dev.next()
+
 png(filename="hist.png")
 hist(Data2[,1:N],col=1:N)
 legend("topright", substr(sampleNames(Data2),1,20), lwd=3, lt = 1:length(sampleNames(Data2)),

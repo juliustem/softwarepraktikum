@@ -56,20 +56,16 @@ body{
   text-align: left;
   padding: 15px 0 15px 0;
 }
-
 .nav > li{
   display: inline-block;
   padding-right: 50px;
   padding-left: 20px;
 }
-
 .nav > li > a{
   text-decoration: none;
   color: #000000;
 }
-
 .nav > li > a:hover{
   color: #FFFFFF;
 }
-
 */

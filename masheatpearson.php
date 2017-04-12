@@ -29,7 +29,7 @@ form
 <!-- Überschrift -->
   <div class="container-fluid">
     <div class="jumbotron">
-      <h2>Das Clusterdiagramm wird erstellt.</h2>
+      <h2>Das MAS Heatmap (Pearson) wird erstellt.</h2>
       <p>Kehren Sie zurück zur Auswahl der Plots</p>
     </div>
     
@@ -37,16 +37,16 @@ form
 
 
 session_start();
-$_SESSION["bool8"]=1;
+$_SESSION["masbool7"]=1;
 $output_path = $_SESSION["p_path"] . "output/";
 $in = $_SESSION["count_files"];
 $p = $_SESSION["curr_path"];
 $u = $_SESSION["p_path"];
 
-exec("/usr/local/bin/Rscript myr8.R $in $p $output_path > /dev/null 2>/dev/null &");
+exec("/usr/local/bin/Rscript myr7mas.R $in $p $output_path > /dev/null 2>/dev/null &");
 
 ?>
 
- <form action='raw.php' method='post' >
+ <form action='mas_norm_auswahl.php' method='post' >
     <input type='submit' value='Zurück zur Auswahl' class='btnSubmit' >
     </form>

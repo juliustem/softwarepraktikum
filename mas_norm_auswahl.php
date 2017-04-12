@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html"; charset="UTF-8">
-    <title>RMA</title>
+    <title>MAS</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!-- Bootstramp für Container und co -->
     <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet"> <!-- Für farbige Boxen z.B "success" -->
     <link href="style.css" rel="stylesheet" type="text/css"/>
@@ -32,6 +32,7 @@ form
 
 <body>
 
+
   <!-- Überschrift -->
     <div class="container-fluid">
       <div class="jumbotron">
@@ -40,14 +41,14 @@ form
         <p><FONT COLOR="#CCCC00">gelb</FONT> = Wird erstellt</p>
       </div>
 
-<!-- Navigations Bar -->
+  <!-- Navigations Bar -->
   <div id="menuContainer">
     <?php include_once("menu_template.php");
     ?>
   </div>
   <div id="bodyContainer">
     <div id="bodyContentContainer">
-      <h3> RMA Normalisierung </h3>
+      <h3> MAS Normalisierung </h3>
 
 <?php
 
@@ -90,14 +91,14 @@ for($i=1; $i<$c+1; ++$i){
 }
 closedir($verzeichnis);
 
-$var1 = $_SESSION["rmabool1"];
+$var1 = $_SESSION["masbool1"];
 //$var2 = $_SESSION["rmabool2"];
-$var3 = $_SESSION["rmabool3"];
-$var4 = $_SESSION["rmabool4"];
-$var5 = $_SESSION["rmabool5"];
-$var6 = $_SESSION["rmabool6"];
-$var7 = $_SESSION["rmabool7"];
-$var8 = $_SESSION["rmabool8"];
+$var3 = $_SESSION["masbool3"];
+$var4 = $_SESSION["masbool4"];
+$var5 = $_SESSION["masbool5"];
+$var6 = $_SESSION["masbool6"];
+$var7 = $_SESSION["masbool7"];
+$var8 = $_SESSION["masbool8"];
 
 $N = $_SESSION["count_files"];
 $C = $_SESSION["curr_path"];
@@ -114,17 +115,46 @@ $_SESSION["name"] = $F;
 ?>
 
 <!-- Zurück zur Startseite -->
-    <form action='rma_norm_auswahl.php' method='post' >
+    <form action='mas_norm_auswahl.php' method='post' >
     <input style="width: 300px;" type='submit' value='Aktualisieren' class='btnSubmit5' >
     </form>
+    
+    
+<!-- Button 5 -->
 
+<?php
+if( glob($out."mashist.png")&&glob($out."mascluster.png")&&glob($out."masheatspearman.png")&&glob($out."masheatpearson.png")){
+?>
+    <form action='masalleplots.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in MAS5" class="btnSubmitgreen">
+  </form>
+<?php
+}
+
+elseif($var5==1){
+?>
+<form action='masalleplots.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in MAS5" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='masalleplots.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in MAS5" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
 
 <!-- Buttons 1 -->
 <?php
 
-if( glob($out."rmahist.png")){
+if( glob($out."mashist.png")){
 ?>
-    <form action='rmahistogramm.php' method='post'>
+    <form action='mashistogramm.php' method='post'>
       <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmitgreen">
   </form>
 
@@ -134,7 +164,7 @@ if( glob($out."rmahist.png")){
 
 elseif($var1==1){
 ?>
-<form action='rmahistogramm.php' method='post'>
+<form action='mashistogramm.php' method='post'>
       <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmityellow">
   </form>
     
@@ -143,7 +173,7 @@ elseif($var1==1){
 
  else{
 ?>
-    <form action='rmahistogramm.php' method='post'>
+    <form action='mashistogramm.php' method='post'>
       <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmit">
   </form>
 <?php
@@ -155,18 +185,18 @@ elseif($var1==1){
 
 <?php
 
-if( glob($out."rmaheatspearman.png")){
+if( glob($out."masheatspearman.png")){
 ?>
     <form action='rmaheatspearman.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Heatmap (Spearman, RMA)" class="btnSubmitgreen">
+      <input style="width: 300px;" type="submit" value="Heatmap (Spearman, MAS5)" class="btnSubmitgreen">
   </form>
 <?php
 }
 
 elseif($var3==1){
 ?>
-<form action='rmaheatspearman.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Heatmap (Spearman, RMA)" class="btnSubmityellow">
+<form action='masheatspearman.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Heatmap (Spearman, MAS5)" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -174,8 +204,8 @@ elseif($var3==1){
 
  else{
 ?>
-    <form action='rmaheatspearman.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Heatmap (Spearman, RMA)" class="btnSubmit">
+    <form action='masheatspearman.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Heatmap (Spearman, MAS5)" class="btnSubmit">
   </form>
 <?php
  }
@@ -184,18 +214,18 @@ elseif($var3==1){
 <!-- Button 7 -->
 
 <?php
-if( glob($out."rmaheatpearson.png")){
+if( glob($out."masheatpearson.png")){
 ?>
-    <form action='rmaheatpearson.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Heatmap (Pearson, RMA)" class="btnSubmitgreen">
+    <form action='masheatpearson.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Heatmap (Pearson, MAS5)" class="btnSubmitgreen">
   </form>
 <?php
 }
 
 elseif($var7==1){
 ?>
-<form action='rmaheatpearson.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Heatmap (Pearson, RMA)" class="btnSubmityellow">
+<form action='masheatpearson.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Heatmap (Pearson, MAS5)" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -203,8 +233,8 @@ elseif($var7==1){
 
  else{
 ?>
-    <form action='rmaheatpearson.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Heatmap (Pearson, RMA)" class="btnSubmit">
+    <form action='masheatpearson.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Heatmap (Pearson, MAS5)" class="btnSubmit">
   </form>
 <?php
  }
@@ -213,18 +243,18 @@ elseif($var7==1){
 <!-- Button 6 -->
 
 <?php
-if( glob($out."RMADataPCAnalysis.png")){
+if( glob($out."MAS5DataPCAnalysis.png")){
 ?>
-    <form action='rmapca.php' method='post'>
-      <input style="width: 300px;" type="submit" value="PCA (RMA)" class="btnSubmitgreen">
+    <form action='maspca.php' method='post'>
+      <input style="width: 300px;" type="submit" value="PCA (MAS5)" class="btnSubmitgreen">
   </form>
 <?php
 }
 
 elseif($var6==1){
 ?>
-<form action='rmapca.php' method='post'>
-      <input style="width: 300px;" type="submit" value="PCA (RMA)" class="btnSubmityellow">
+<form action='maspca.php' method='post'>
+      <input style="width: 300px;" type="submit" value="PCA (MAS5)" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -232,8 +262,8 @@ elseif($var6==1){
 
  else{
 ?>
-    <form action='rmapca.php' method='post'>
-      <input style="width: 300px;" type="submit" value="PCA (RMA)" class="btnSubmit">
+    <form action='maspca.php' method='post'>
+      <input style="width: 300px;" type="submit" value="PCA (MAS5)" class="btnSubmit">
   </form>
 <?php
  }
@@ -242,9 +272,9 @@ elseif($var6==1){
 <!-- Buttons 8 -->
 <?php
 
-if( glob($out."rmacluster.png")){
+if( glob($out."mascluster.png")){
 ?>
-    <form action='rmacluster.php' method='post'>
+    <form action='mascluster.php' method='post'>
       <input style="width: 300px;" type="submit" value="Clusterdiagramm" class="btnSubmitgreen">
   </form>
 
@@ -254,7 +284,7 @@ if( glob($out."rmacluster.png")){
 
 elseif($var8==1){
 ?>
-<form action='rmacluster.php' method='post'>
+<form action='mascluster.php' method='post'>
       <input style="width: 300px;" type="submit" value="Clusterdiagramm" class="btnSubmityellow">
   </form>
     
@@ -263,7 +293,7 @@ elseif($var8==1){
 
  else{
 ?>
-    <form action='rmacluster.php' method='post'>
+    <form action='mascluster.php' method='post'>
       <input style="width: 300px;" type="submit" value="Clusterdiagramm" class="btnSubmit">
   </form>
 <?php
@@ -271,38 +301,9 @@ elseif($var8==1){
 ?>
 
 
-<!-- Button 5 -->
 
-<?php
-if( glob($out."rmahist.png")&&glob($out."rmacluster.png")&&glob($out."rmaheatspearman.png")&&glob($out."rmaheatpearson.png")){
-?>
-    <form action='rmaalleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in RMA" class="btnSubmitgreen">
-  </form>
-<?php
-}
+</div>
+</div>
 
-elseif($var5==1){
-?>
-<form action='rmaalleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in RMA" class="btnSubmityellow">
-  </form>
-    
-<?php    
-}
-
- else{
-?>
-    <form action='rmaalleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in RMA" class="btnSubmit">
-  </form>
-<?php
- }
-?>
-
-
-        </div>
-      </div>
-
-        </body>
-        </html>
+  </body>
+  </html>

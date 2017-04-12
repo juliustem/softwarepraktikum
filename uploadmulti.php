@@ -25,7 +25,7 @@
 <style>
 .btnSubmit{background-color:#8d8f90;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 .demoInputBox{padding:5px; border:#F0F0F0 1px solid; border-radius:2px; background-color:#FFF;}
-
+.btnSubmit_blue{background-color:#428bca;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 
 body
 { 
@@ -62,6 +62,25 @@ form
     $_SESSION["bool5"]=0;
     $_SESSION["bool6"]=0;
     $_SESSION["bool7"]=0;  
+    $_SESSION["bool8"]=0;    
+//RMA Normalisierung    
+    $_SESSION["rmabool1"]=0;
+//    $_SESSION["rmabool2"]=0;
+    $_SESSION["rmabool3"]=0;
+    $_SESSION["rmabool4"]=0;
+    $_SESSION["rmabool5"]=0;
+    $_SESSION["rmabool6"]=0;
+    $_SESSION["rmabool7"]=0;  
+    $_SESSION["rmabool8"]=0;   
+//MAS 5 Normalisierung    
+    $_SESSION["masbool1"]=0;
+//    $_SESSION["rmabool2"]=0;
+    $_SESSION["masbool3"]=0;
+    $_SESSION["masbool4"]=0;
+    $_SESSION["masbool5"]=0;
+    $_SESSION["masbool6"]=0;
+    $_SESSION["masbool7"]=0;  
+    $_SESSION["masbool8"]=0;    
   
 if (isset($_POST["s_button"])) {
 } else {
@@ -75,7 +94,7 @@ if (isset($_POST["s_button"])) {
             ++$c;
             $tmp_button = "button" . $c;
             echo "<a href='$old_exp/$Ordner' target=_blank>$Ordner</a><br>";
-            echo "<form action='plot_auswahl.php' method='post' >";
+            echo "<form action='raw.php' method='post' >";
             echo "<input type='submit' name=$tmp_button value='Mit diesem Experiment weiterarbeiten' class='btnSubmit'>";
             echo "</form>";
         }
@@ -169,8 +188,8 @@ foreach ($_FILES as $file):
     $_SESSION["count_files"]= $i;
     $_SESSION["f_name"]      = $name;
     
-    echo "<form action='plot_auswahl.php' method='post' >";
-    echo "<input type='submit' value='Weiter zur Auswahl der benötigten Plots' class='btnSubmit' >";
+    echo "<form action='raw.php' method='post' >";
+    echo "<input type='submit' value='Weiter zur Auswahl der benötigten Plots' class='btnSubmit_blue' >";
     echo "</form>";
         
 endforeach;
