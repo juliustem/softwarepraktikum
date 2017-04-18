@@ -156,7 +156,7 @@ elseif($var5==1){
 if( glob($out."mashist.png")){
 ?>
     <form action='mashistogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmitgreen">
+      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, MAS)" class="btnSubmitgreen">
   </form>
 
 <?php
@@ -166,7 +166,7 @@ if( glob($out."mashist.png")){
 elseif($var1==1){
 ?>
 <form action='mashistogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmityellow">
+      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, MAS)" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -175,7 +175,7 @@ elseif($var1==1){
  else{
 ?>
     <form action='mashistogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmit">
+      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, MAS)" class="btnSubmit">
   </form>
 <?php
  }

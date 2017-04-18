@@ -28,6 +28,11 @@ form
 
 .btnSubmit3{background-color:#000066;border:0;padding:4px 20px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
 
+#myImg1 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
 #myImg {
     border-radius: 5px;
@@ -60,6 +65,12 @@ form
 }
 
 #myImg6 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg8 {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
@@ -115,11 +126,13 @@ form
 
 
 #myImg:hover {opacity: 0.7;}
+#myImg1:hover {opacity: 0.7;}
 #myImg2:hover {opacity: 0.7;}
 #myImg3:hover {opacity: 0.7;}
 #myImg4:hover {opacity: 0.7;}
 #myImg5:hover {opacity: 0.7;}
 #myImg6:hover {opacity: 0.7;}
+#myImg8:hover {opacity: 0.7;}
 
 #myImgrma:hover {opacity: 0.7;}
 #myImgrma4:hover {opacity: 0.7;}
@@ -258,6 +271,12 @@ if( glob($o."hist.png")){
    if( glob($o."Rohcluster.png")){
   echo("<img id='myImg6' src='$o/Rohcluster.png' alt='Clusterdiagramm (Rohdaten)' width='300' height='300'>"); 
   }
+   if( glob($o."RawDataPCAanalysis.png")){
+  echo("<img id='myImg8' src='$o/RawDataPCAanalysis.png' alt='PCA' width='300' height='300'>"); 
+  }   
+/*   if( glob($o."scatterplot.png")){
+  echo("<img id='myImg8' src='$o/RawDataPCAanalysis.png' alt='PCA' width='300' height='300'>"); 
+  }   */
 
 ?>
       <h3>RMA Normalisierung:</h3>
@@ -444,6 +463,31 @@ var modal = document.getElementById('myModal');
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
 var img = document.getElementById('myImg6');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für PCA -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg8');
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 
