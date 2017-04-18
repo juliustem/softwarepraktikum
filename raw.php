@@ -88,6 +88,8 @@ form
       @mkdir($out, 0777); //output Ordner erstellen
       @chmod($out, 0777);
       // Werte für die Farben der Buttons importieren
+      $text = $_SESSION["textraw"];
+      $var = $_SESSION["bool"];
       $var1 = $_SESSION["bool1"];
       $var2 = $_SESSION["bool2"];
       $var3 = $_SESSION["bool3"];
@@ -119,10 +121,10 @@ form
 
           <!-- Button für Gesamtpaket -->
 <?php
-if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qualitycontrol.png")&&glob($out."heatspearman.png")&&glob($out."heatpearson.png")&&glob($out."Rohcluster.png")){
+if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qualitycontrol.png")&&glob($out."heatspearman.png")&&glob($out."heatpearson.png")&&glob($out."RawDataPCAanalysis.png")&&glob($out."Rohcluster.png")&&glob($out."affymetrix_raw.txt")){
 ?>
     <form action='alleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmitgreen">
+      <input style="width: 300px;" type="submit" value="Gesamtpaket aller Raw Plots" class="btnSubmitgreen">
   </form>
 <?php
 }
@@ -130,7 +132,7 @@ if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qua
 elseif($var5==1){
 ?>
 <form action='alleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmityellow">
+      <input style="width: 300px;" type="submit" value="Gesamtpaket aller Raw Plots" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -139,7 +141,74 @@ elseif($var5==1){
  else{
 ?>
     <form action='alleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmit">
+      <input style="width: 300px;" type="submit" value="Gesamtpaket aller Raw Plots" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
+
+
+<!-- Buttons 1 -->
+<?php
+
+if( glob($out."affymetrix_raw.txt")){
+?>
+    <form action='textraw.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Textdatei für Raw" class="btnSubmitgreen">
+  </form>
+
+<?php
+ 
+}
+
+elseif($text==1){
+?>
+<form action='textraw.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Textdatei für Raw" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='textraw.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Textdatei für Raw" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
+
+
+
+
+<!-- Buttons 0 -->
+	<?php
+
+    $chipleer = "chipimage ".$N." .png";
+	if( glob($out.$chipleer)){
+	?>
+    	<form action='chipimage.php' method='post'>
+      		<input style="width: 300px;" type="submit" value="Chipimage" class="btnSubmitgreen">
+ 		 </form>
+
+	<?php
+ 
+	}
+
+elseif($var==1){
+?>
+<form action='chipimage.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Chipimage" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='chipimage.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Chipimage" class="btnSubmit">
   </form>
 <?php
  }
@@ -152,7 +221,7 @@ elseif($var5==1){
 	if( glob($out."hist.png")){
 	?>
     	<form action='histogramm.php' method='post'>
-      		<input style="width: 300px;" type="submit" value="Histogramm (Density Plot)" class="btnSubmitgreen">
+      		<input style="width: 300px;" type="submit" value="Histogramm" class="btnSubmitgreen">
  		 </form>
 
 	<?php
@@ -162,7 +231,7 @@ elseif($var5==1){
 elseif($var1==1){
 ?>
 <form action='histogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot)" class="btnSubmityellow">
+      <input style="width: 300px;" type="submit" value="Histogramm" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -171,7 +240,7 @@ elseif($var1==1){
  else{
 ?>
     <form action='histogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot)" class="btnSubmit">
+      <input style="width: 300px;" type="submit" value="Histogramm" class="btnSubmit">
   </form>
 <?php
  }
@@ -268,7 +337,7 @@ elseif($var7==1){
 <!-- Button 6 -->
 
 <?php
-if( glob($out."DataPCAnalysis.png")){
+if( glob($out."RawDataPCAanalysis.png")){
 ?>
     <form action='pca.php' method='post'>
       <input style="width: 300px;" type="submit" value="PCA" class="btnSubmitgreen">

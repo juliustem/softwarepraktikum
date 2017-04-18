@@ -68,7 +68,7 @@ for (i in 2:N){
 
 dev.off()
 
-
-
+write.table(mas, "affymetrix_mas5.txt", 
+            sep="\t", row.names=T, col.names=T, quote=F)
 
 

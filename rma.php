@@ -80,7 +80,7 @@ for($i=1; $i<$c+1; ++$i){
     }
 }
 closedir($verzeichnis);
-
+$text = $_SESSION["textrma"];
 $var1 = $_SESSION["rmabool1"];
 //$var2 = $_SESSION["rmabool2"];
 $var3 = $_SESSION["rmabool3"];
@@ -118,17 +118,17 @@ $_SESSION["name"] = $F;
 
 <!-- Zurück zur Startseite -->
     <form action='rma.php' method='post' >
-    <input style="width: 300px;" type='submit' value='Aktualisieren' class='btnSubmit5' >
+    <input style="width: 300px;" type='submit' value='Status der Plots updaten' class='btnSubmit5' >
     </form>
 
 
 <!-- Button 5 -->
 
 <?php
-if( glob($out."rmahist.png")&&glob($out."rmacluster.png")&&glob($out."rmaheatspearman.png")&&glob($out."rmaheatpearson.png")){
+if( glob($out."rmahist.png")&&glob($out."rmacluster.png")&&glob($out."rmaheatspearman.png")&&glob($out."rmaheatpearson.png")&&glob($out."affymetrix_rma.txt")){
 ?>
     <form action='rmaalleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in RMA" class="btnSubmitgreen">
+      <input style="width: 300px;" type="submit" value="Gesamtpaket aller RMA Plots" class="btnSubmitgreen">
   </form>
 <?php
 }
@@ -136,7 +136,7 @@ if( glob($out."rmahist.png")&&glob($out."rmacluster.png")&&glob($out."rmaheatspe
 elseif($var5==1){
 ?>
 <form action='rmaalleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in RMA" class="btnSubmityellow">
+      <input style="width: 300px;" type="submit" value="Gesamtpaket aller RMA Plots" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -145,11 +145,44 @@ elseif($var5==1){
  else{
 ?>
     <form action='rmaalleplots.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in RMA" class="btnSubmit">
+      <input style="width: 300px;" type="submit" value="Gesamtpaket aller RMA Plots" class="btnSubmit">
   </form>
 <?php
  }
 ?>
+
+
+<!-- Buttons Text -->
+<?php
+
+if( glob($out."affymetrix_rma.txt")){
+?>
+    <form action='textrma.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Textdatei für RMA" class="btnSubmitgreen">
+  </form>
+
+<?php
+ 
+}
+
+elseif($text==1){
+?>
+<form action='textrma.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Textdatei für RMA" class="btnSubmityellow">
+  </form>
+    
+<?php    
+}
+
+ else{
+?>
+    <form action='textrma.php' method='post'>
+      <input style="width: 300px;" type="submit" value="Textdatei für RMA" class="btnSubmit">
+  </form>
+<?php
+ }
+?>
+
 
 <!-- Buttons 1 -->
 <?php
@@ -157,7 +190,7 @@ elseif($var5==1){
 if( glob($out."rmahist.png")){
 ?>
     <form action='rmahistogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmitgreen">
+      <input style="width: 300px;" type="submit" value="Histogramm (RMA)" class="btnSubmitgreen">
   </form>
 
 <?php
@@ -167,7 +200,7 @@ if( glob($out."rmahist.png")){
 elseif($var1==1){
 ?>
 <form action='rmahistogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmityellow">
+      <input style="width: 300px;" type="submit" value="Histogramm (RMA)" class="btnSubmityellow">
   </form>
     
 <?php    
@@ -176,7 +209,7 @@ elseif($var1==1){
  else{
 ?>
     <form action='rmahistogramm.php' method='post'>
-      <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, RMA)" class="btnSubmit">
+      <input style="width: 300px;" type="submit" value="Histogramm (RMA)" class="btnSubmit">
   </form>
 <?php
  }

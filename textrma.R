@@ -1,3 +1,4 @@
+
 args <- commandArgs(TRUE)
 N <- args[1]
 P <- args[2]
@@ -10,40 +11,33 @@ library(Biobase)
 library(BiocGenerics)
 library(BiocInstaller)
 #library(cluster)
-library(genefilter)
+#library(genefilter)
 library(affy)
-library(affycomp)
-#library(affydata)
+#library(affycomp)
+library(affydata)
 library(affyio)
 library(simpleaffy)
 #library(sm)
-library(BH)
-library(bioDist)
+#library(BH)
+#library(bioDist)
 #library(MVA)
 #library(qcc)
 #library(made4)
 #library(ade4)
-#library(NMF)
-#library(hugene20sttranscriptcluster.db)
-
-
 
 Data <- ReadAffy()
+
+#RMA
+rma <- rma(Data)
+#rma2 <- justRMA() kombi mit readaffy und rma
+rm <- (exprs(rma))
+
 
 setwd("..")
 
 setwd("output")
 
-
-for (i in 1:N) {
-  
-  png(filename= paste("chipimage",i,".png"))
-  image(Data[,i],col=heat.colors(100))
-  dev.next()
-}
-dev.off()
-
-
-#klappt nicht
+write.table(rm, "affymetrix_rma.txt", 
+            sep="\t", row.names=T, col.names=T, quote=F)
 
 

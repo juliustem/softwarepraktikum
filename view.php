@@ -76,6 +76,59 @@ form
     transition: 0.3s;
 }
 
+#myImg9 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg10 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg11 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg12 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg13 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg14 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg15 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg16 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg17 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg18 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+
 #myImgrma {
     border-radius: 5px;
     cursor: pointer;
@@ -133,6 +186,17 @@ form
 #myImg5:hover {opacity: 0.7;}
 #myImg6:hover {opacity: 0.7;}
 #myImg8:hover {opacity: 0.7;}
+#myImg9:hover {opacity: 0.7;}
+#myImg10:hover {opacity: 0.7;}
+#myImg11:hover {opacity: 0.7;}
+#myImg12:hover {opacity: 0.7;}
+#myImg13:hover {opacity: 0.7;}
+#myImg14:hover {opacity: 0.7;}
+#myImg15:hover {opacity: 0.7;}
+#myImg16:hover {opacity: 0.7;}
+#myImg17:hover {opacity: 0.7;}
+#myImg18:hover {opacity: 0.7;}
+
 
 #myImgrma:hover {opacity: 0.7;}
 #myImgrma4:hover {opacity: 0.7;}
@@ -245,6 +309,7 @@ ini_set("max_execution_time", 300);
 
 @session_start();
 //kriegt wieder die Session Variablen
+$N = $_SESSION["count_files"];
 $c = $_SESSION["curr_path"];
 $p = $_SESSION["p_path"]; //gibt Pfad des Ordners mit input + output an
 $f = $_SESSION["f_name"];
@@ -274,9 +339,16 @@ if( glob($o."hist.png")){
    if( glob($o."RawDataPCAanalysis.png")){
   echo("<img id='myImg8' src='$o/RawDataPCAanalysis.png' alt='PCA' width='300' height='300'>"); 
   }   
-/*   if( glob($o."scatterplot.png")){
-  echo("<img id='myImg8' src='$o/RawDataPCAanalysis.png' alt='PCA' width='300' height='300'>"); 
-  }   */
+  
+  for($i=1; $i<=$N+1; ++$i){
+    $chiptemp = "chipimage ".$i." .png";
+   if( glob($o.$chiptemp)){
+    $c=8+$i;
+    $tempimage = "myImg".$c;
+  echo("<img id='$tempimage' src='$o/$chiptemp' alt='Chipimage $i' width='300' height='300'>"); 
+  }
+  
+  }   
 
 ?>
       <h3>RMA Normalisierung:</h3>
@@ -314,9 +386,21 @@ if( glob($o."hist.png")){
    if( glob($o."masheatpearson.png")){
   echo("<img id='myImgmas7' src='$o/masheatpearson.png' alt='Correlationplot Pearson in MAS 5 Normalisierung' width='300' height='300'>"); 
   } 
-
-
- 
+?>
+     <h3>Textdateien:</h3>
+<?php
+   if( glob($o."affymetrix_mas5.txt")){
+  echo("<a href ='$o/affymetrix_raw.txt' >Textdatei RAW</a>"); 
+  echo("<br>");
+  } 
+   if( glob($o."affymetrix_mas5.txt")){
+  echo("<a href ='$o/affymetrix_mas5.txt' >Textdatei MAS 5</a>"); 
+  echo("<br>");  
+  } 
+   if( glob($o."affymetrix_mas5.txt")){
+  echo("<a href ='$o/affymetrix_rma.txt' >Textdatei RMA</a>"); 
+  echo("<br>");
+  }  
 ?>  
 
 
@@ -505,6 +589,258 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 </script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg9');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg10');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg11');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg12');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg13');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg14');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg15');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg16');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg17');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
+<!-- Für Chipimage -->
+ <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg18');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+
 
 <!-- Für RMA Histogramm -->
  <script>

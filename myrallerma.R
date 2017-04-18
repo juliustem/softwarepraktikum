@@ -38,7 +38,7 @@ setwd("output")
 
 
 png(filename="rmaheatspearman.png", pointsize = 10, width = 500, height = 500)
-heatmap(cor(rm, method = "spearman")) #mit Legende
+aheatmap(cor(rm, method = "spearman")) #mit Legende
 title(main="Heatmap Spearman")
 
 dev.next()
@@ -69,4 +69,5 @@ dev.next()
 
 dev.off()
 
-
+write.table(rm, "affymetrix_rma.txt", 
+            sep="\t", row.names=T, col.names=T, quote=F)
