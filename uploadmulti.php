@@ -55,6 +55,8 @@ form
   <?php  
  //Fürs Speichern der Variablen, während der Sitzung   
     session_start();
+    $_SESSION["gesamt"]=0;
+    $_SESSION["bool"]=0;
     $_SESSION["bool1"]=0;
     $_SESSION["bool2"]=0;
     $_SESSION["bool3"]=0;
@@ -62,7 +64,8 @@ form
     $_SESSION["bool5"]=0;
     $_SESSION["bool6"]=0;
     $_SESSION["bool7"]=0;  
-    $_SESSION["bool8"]=0;    
+    $_SESSION["bool8"]=0;   
+    $_SESSION["textraw"]=0; 
 //RMA Normalisierung    
     $_SESSION["rmabool1"]=0;
 //    $_SESSION["rmabool2"]=0;
@@ -72,6 +75,7 @@ form
     $_SESSION["rmabool6"]=0;
     $_SESSION["rmabool7"]=0;  
     $_SESSION["rmabool8"]=0;   
+    $_SESSION["textrma"]=0;
 //MAS 5 Normalisierung    
     $_SESSION["masbool1"]=0;
 //    $_SESSION["rmabool2"]=0;
@@ -80,7 +84,8 @@ form
     $_SESSION["masbool5"]=0;
     $_SESSION["masbool6"]=0;
     $_SESSION["masbool7"]=0;  
-    $_SESSION["masbool8"]=0;    
+    $_SESSION["masbool8"]=0; 
+    $_SESSION["textmas"]=0;    
   
 if (isset($_POST["s_button"])) {
 } else {
