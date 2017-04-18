@@ -41,71 +41,73 @@ form
       </div>
 
       <?php
-      ini_set("max_execution_time", 300);
-      // Hilfsfkt zum Zählen der Dateien eines Ordners
-      function c_files($folder){
-        $anz = 0;
-        $tmp_folder = "upload/".$folder."/input"."/";
-        $handle = opendir($tmp_folder);
-        while($file = readdir($handle)){
-            ++$anz;
-          }
-      closedir($handle);
-      return $anz-2; //wegen "." und ".."
-      }
-      SESSION_START();
-      $c = $_SESSION["c_glob"];
-      $old_exp     = "upload/";
-      $verzeichnis = opendir($old_exp);
-      //Variablen aus der uploadmulti.php, falls altes Experiment gewählt wurde
-      for($i=1; $i<$c+1; ++$i){
-          if (isset($_POST["button".$i])){
-            // echo "BUTTON $i WURDE GEDRÜCKT! <br />";
-            $j=1;
-            while ($Ordner = readdir($verzeichnis)){
-              if ($j<($i+1)){
+ini_set("max_execution_time", 300);
+// Hilfsfkt zum Zählen der Dateien eines Ordners
+function c_files($folder)
+{
+    $anz        = 0;
+    $tmp_folder = "upload/" . $folder . "/input" . "/";
+    $handle     = opendir($tmp_folder);
+    while ($file = readdir($handle)) {
+        ++$anz;
+    }
+    closedir($handle);
+    return $anz - 2; //wegen "." und ".."
+}
+SESSION_START();
+$c           = $_SESSION["c_glob"];
+$old_exp     = "upload/";
+$verzeichnis = opendir($old_exp);
+//Variablen aus der uploadmulti.php, falls altes Experiment gewählt wurde
+for ($i = 1; $i < $c + 1; ++$i) {
+    if (isset($_POST["button" . $i])) {
+        // echo "BUTTON $i WURDE GEDRÜCKT! <br />";
+        $j = 1;
+        while ($Ordner = readdir($verzeichnis)) {
+            if ($j < ($i + 1)) {
                 if ($Ordner != "." && $Ordner != ".." && $Ordner != ".DS_Store") {
-                ++$j;
-                $_SESSION["p_path"]      = "upload/".$Ordner."/";
-                $_SESSION["curr_path"]   = "upload/".$Ordner."/input"."/";
-                $_SESSION["f_name"]      = $Ordner;
-                $anz_dateien = c_files($Ordner);
-                $_SESSION["count_files"] = $anz_dateien;
-              }
+                    ++$j;
+                    $_SESSION["p_path"]      = "upload/" . $Ordner . "/";
+                    $_SESSION["curr_path"]   = "upload/" . $Ordner . "/input" . "/";
+                    $_SESSION["f_name"]      = $Ordner;
+                    $anz_dateien             = c_files($Ordner);
+                    $_SESSION["count_files"] = $anz_dateien;
+                }
             }
-            }
-          }
-      }
-      closedir($verzeichnis);
-      // Variablen aus der uploadmulti.php, falls neues Experiment
-      $N = $_SESSION["count_files"];
-      $C = $_SESSION["curr_path"];
-      $P = $_SESSION["p_path"]; //gibt Pfad des Ordners mit input + output an
-      $F = $_SESSION["f_name"];
-      echo "Aktuelles ausgewähltes Experiment: $F <br />";
-      echo "<br />";
-      $out = $P . "output/";
-      @mkdir($out, 0777); //output Ordner erstellen
-      @chmod($out, 0777);
-      // Werte für die Farben der Buttons importieren
-      $var0 = $_SESSION["gesamt"];
-      
-      // Zwischenspeiichern der Variablen für zipdownload.php
-      $_SESSION["oberordner"] = $P;
-      $_SESSION["name"] = $F;
-      ?>
+        }
+    }
+}
+closedir($verzeichnis);
+// Variablen aus der uploadmulti.php, falls neues Experiment
+$N = $_SESSION["count_files"];
+$C = $_SESSION["curr_path"];
+$P = $_SESSION["p_path"]; //gibt Pfad des Ordners mit input + output an
+$F = $_SESSION["f_name"];
+echo "Aktuelles ausgewähltes Experiment: $F <br />";
+echo "<br />";
+$out = $P . "output/";
+@mkdir($out, 0777); //output Ordner erstellen
+@chmod($out, 0777);
+// Werte für die Farben der Buttons importieren
+$var0 = $_SESSION["gesamt"];
+
+// Zwischenspeiichern der Variablen für zipdownload.php
+$_SESSION["oberordner"] = $P;
+$_SESSION["name"]       = $F;
+?>
 
       <!-- Navigations Bar -->
         <div id="menuContainer">
-          <?php include_once("menu_template.php");
-          ?>
+          <?php
+include_once("menu_template.php");
+?>
         </div>
         <div id="bodyContainer">
           <div id="bodyContentContainer">
 
           <!-- Button für Gesamtpaket -->
 <?php
-if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qualitycontrol.png")&&glob($out."heatspearman.png")&&glob($out."heatpearson.png")&&glob($out."RawDataPCAanalysis.png")&&glob($out."Rohcluster.png")&&glob($out."rmahist.png")&&glob($out."rmacluster.png")&&glob($out."rmaheatspearman.png")&&glob($out."rmaheatpearson.png")&&glob($out."mashist.png")&&glob($out."mascluster.png")&&glob($out."masheatspearman.png")&&glob($out."masheatpearson.png")&&glob($out."affymetrix_raw.txt")&&glob($out."affymetrix_mas5.txt")&&glob($out."affymetrix_rma.txt")){
+if (glob($out . "RNA_Degradation_Plot.png") && glob($out . "hist.png") && glob($out . "qualitycontrol.png") && glob($out . "heatspearman.png") && glob($out . "heatpearson.png") && glob($out . "RawDataPCAanalysis.png") && glob($out . "Rohcluster.png") && glob($out . "rmahist.png") && glob($out . "rmacluster.png") && glob($out . "rmaheatspearman.png") && glob($out . "rmaheatpearson.png") && glob($out . "mashist.png") && glob($out . "mascluster.png") && glob($out . "masheatspearman.png") && glob($out . "masheatpearson.png") && glob($out . "affymetrix_raw.txt") && glob($out . "affymetrix_mas5.txt") && glob($out . "affymetrix_rma.txt")) {
 ?>
     <form action='gesamtpacket.php' method='post'>
       <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmitgreen">
@@ -113,22 +115,22 @@ if( glob($out."RNA_Degradation_Plot.png")&&glob($out."hist.png")&&glob($out."qua
 <?php
 }
 
-elseif($var0==1){
+elseif ($var0 == 1) {
 ?>
 <form action='gesamtpacket.php' method='post'>
       <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmityellow">
   </form>
     
-<?php    
+<?php
 }
 
- else{
+else {
 ?>
     <form action='gesamtpacket.php' method='post'>
       <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen" class="btnSubmit">
   </form>
 <?php
- }
+}
 ?>
 
 

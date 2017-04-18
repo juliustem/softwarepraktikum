@@ -47,37 +47,38 @@ ini_set("max_execution_time", 300);
 
 
 // Hilfsfkt zum Zählen der Dateien eines Ordners
-function c_files($folder){
-  $anz = 0;
-  $tmp_folder = "upload/".$folder."/input"."/";
-  $handle = opendir($tmp_folder);
-  while($file = readdir($handle)){
-      ++$anz;
+function c_files($folder)
+{
+    $anz        = 0;
+    $tmp_folder = "upload/" . $folder . "/input" . "/";
+    $handle     = opendir($tmp_folder);
+    while ($file = readdir($handle)) {
+        ++$anz;
     }
-closedir($handle);
-return $anz-2; //wegen "." und ".."
+    closedir($handle);
+    return $anz - 2; //wegen "." und ".."
 }
 session_start();
-$c = $_SESSION["c_glob"];
+$c           = $_SESSION["c_glob"];
 $old_exp     = "upload/";
 $verzeichnis = opendir($old_exp);
 //Variablen aus der uploadmulti.php, falls altes Experiment gewählt wurde
-for($i=1; $i<$c+1; ++$i){
-    if (isset($_POST["button".$i])){
-      // echo "BUTTON $i WURDE GEDRÜCKT! <br />";
-      $j=1;
-      while ($Ordner = readdir($verzeichnis)){
-        if ($j<($i+1)){
-          if ($Ordner != "." && $Ordner != ".." && $Ordner != ".DS_Store") {
-          ++$j;
-          $_SESSION["p_path"]      = "upload/".$Ordner."/";
-          $_SESSION["curr_path"]   = "upload/".$Ordner."/input"."/";
-          $_SESSION["f_name"]      = $Ordner;
-          $anz_dateien = c_files($Ordner);
-          $_SESSION["count_files"] = $anz_dateien;
+for ($i = 1; $i < $c + 1; ++$i) {
+    if (isset($_POST["button" . $i])) {
+        // echo "BUTTON $i WURDE GEDRÜCKT! <br />";
+        $j = 1;
+        while ($Ordner = readdir($verzeichnis)) {
+            if ($j < ($i + 1)) {
+                if ($Ordner != "." && $Ordner != ".." && $Ordner != ".DS_Store") {
+                    ++$j;
+                    $_SESSION["p_path"]      = "upload/" . $Ordner . "/";
+                    $_SESSION["curr_path"]   = "upload/" . $Ordner . "/input" . "/";
+                    $_SESSION["f_name"]      = $Ordner;
+                    $anz_dateien             = c_files($Ordner);
+                    $_SESSION["count_files"] = $anz_dateien;
+                }
+            }
         }
-      }
-      }
     }
 }
 closedir($verzeichnis);
@@ -102,14 +103,15 @@ $out = $P . "output/";
 
 // Zwischenspeiichern der Variablen für zipdownload.php
 $_SESSION["oberordner"] = $P;
-$_SESSION["name"] = $F;
+$_SESSION["name"]       = $F;
 
 ?>
 
   <!-- Navigations Bar -->
   <div id="menuContainer">
-    <?php include_once("menu_template.php");
-    ?>
+    <?php
+include_once("menu_template.php");
+?>
   </div>
   <div id="bodyContainer">
     <div id="bodyContentContainer">
@@ -124,7 +126,7 @@ $_SESSION["name"] = $F;
 <!-- Button 5 -->
 
 <?php
-if( glob($out."mashist.png")&&glob($out."mascluster.png")&&glob($out."masheatspearman.png")&&glob($out."masheatpearson.png")){
+if (glob($out . "mashist.png") && glob($out . "mascluster.png") && glob($out . "masheatspearman.png") && glob($out . "masheatpearson.png")) {
 ?>
     <form action='masalleplots.php' method='post'>
       <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in MAS5" class="btnSubmitgreen">
@@ -132,53 +134,53 @@ if( glob($out."mashist.png")&&glob($out."mascluster.png")&&glob($out."masheatspe
 <?php
 }
 
-elseif($var5==1){
+elseif ($var5 == 1) {
 ?>
 <form action='masalleplots.php' method='post'>
       <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in MAS5" class="btnSubmityellow">
   </form>
     
-<?php    
+<?php
 }
 
- else{
+else {
 ?>
     <form action='masalleplots.php' method='post'>
       <input style="width: 300px;" type="submit" value="Alle verfügbaren Plots erstellen in MAS5" class="btnSubmit">
   </form>
 <?php
- }
+}
 ?>
 
 <!-- Buttons 1 -->
 <?php
 
-if( glob($out."mashist.png")){
+if (glob($out . "mashist.png")) {
 ?>
     <form action='mashistogramm.php' method='post'>
       <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, MAS)" class="btnSubmitgreen">
   </form>
 
 <?php
- 
+    
 }
 
-elseif($var1==1){
+elseif ($var1 == 1) {
 ?>
 <form action='mashistogramm.php' method='post'>
       <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, MAS)" class="btnSubmityellow">
   </form>
     
-<?php    
+<?php
 }
 
- else{
+else {
 ?>
     <form action='mashistogramm.php' method='post'>
       <input style="width: 300px;" type="submit" value="Histogramm (Density Plot, MAS)" class="btnSubmit">
   </form>
 <?php
- }
+}
 ?>
 
 
@@ -186,7 +188,7 @@ elseif($var1==1){
 
 <?php
 
-if( glob($out."masheatspearman.png")){
+if (glob($out . "masheatspearman.png")) {
 ?>
     <form action='rmaheatspearman.php' method='post'>
       <input style="width: 300px;" type="submit" value="Heatmap (Spearman, MAS5)" class="btnSubmitgreen">
@@ -194,28 +196,28 @@ if( glob($out."masheatspearman.png")){
 <?php
 }
 
-elseif($var3==1){
+elseif ($var3 == 1) {
 ?>
 <form action='masheatspearman.php' method='post'>
       <input style="width: 300px;" type="submit" value="Heatmap (Spearman, MAS5)" class="btnSubmityellow">
   </form>
     
-<?php    
+<?php
 }
 
- else{
+else {
 ?>
     <form action='masheatspearman.php' method='post'>
       <input style="width: 300px;" type="submit" value="Heatmap (Spearman, MAS5)" class="btnSubmit">
   </form>
 <?php
- }
+}
 ?>
 
 <!-- Button 7 -->
 
 <?php
-if( glob($out."masheatpearson.png")){
+if (glob($out . "masheatpearson.png")) {
 ?>
     <form action='masheatpearson.php' method='post'>
       <input style="width: 300px;" type="submit" value="Heatmap (Pearson, MAS5)" class="btnSubmitgreen">
@@ -223,53 +225,53 @@ if( glob($out."masheatpearson.png")){
 <?php
 }
 
-elseif($var7==1){
+elseif ($var7 == 1) {
 ?>
 <form action='masheatpearson.php' method='post'>
       <input style="width: 300px;" type="submit" value="Heatmap (Pearson, MAS5)" class="btnSubmityellow">
   </form>
     
-<?php    
+<?php
 }
 
- else{
+else {
 ?>
     <form action='masheatpearson.php' method='post'>
       <input style="width: 300px;" type="submit" value="Heatmap (Pearson, MAS5)" class="btnSubmit">
   </form>
 <?php
- }
+}
 ?>
 
 <!-- Buttons 8 -->
 <?php
 
-if( glob($out."mascluster.png")){
+if (glob($out . "mascluster.png")) {
 ?>
     <form action='mascluster.php' method='post'>
       <input style="width: 300px;" type="submit" value="Clusterdiagramm" class="btnSubmitgreen">
   </form>
 
 <?php
- 
+    
 }
 
-elseif($var8==1){
+elseif ($var8 == 1) {
 ?>
 <form action='mascluster.php' method='post'>
       <input style="width: 300px;" type="submit" value="Clusterdiagramm" class="btnSubmityellow">
   </form>
     
-<?php    
+<?php
 }
 
- else{
+else {
 ?>
     <form action='mascluster.php' method='post'>
       <input style="width: 300px;" type="submit" value="Clusterdiagramm" class="btnSubmit">
   </form>
 <?php
- }
+}
 ?>
 
 

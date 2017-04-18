@@ -299,13 +299,14 @@ form
 
 <!-- Navigations Bar -->
   <div id="menuContainer">
-    <?php include_once("menu_template.php");
-    ?>
-  </div>
+    <?php
+include_once("menu_template.php");
+?>
+ </div>
   <div id="bodyContainer">
     <div id="bodyContentContainer">
 <?php
-ini_set("max_execution_time", 300); 
+ini_set("max_execution_time", 300);
 
 @session_start();
 //kriegt wieder die Session Variablen
@@ -318,89 +319,89 @@ $o = $p . "output/";
 
       <h3>Rohdaten:</h3>
 <?php
-if( glob($o."hist.png")){
-  echo("<img id='myImg' src='$o/hist.png' alt='Histogram' width='300' height='300'>"); 
-  }
-  if( glob($o."qualitycontrol.png")){
-  echo("<img id='myImg2' src='$o/qualitycontrol.png' alt='Quality Control' width='300' height='300'>"); 
-  }
-   if( glob($o."RNA_Degradation_Plot.png")){
-  echo("<img id='myImg3' src='$o/RNA_Degradation_Plot.png' alt='RNA Degradation' width='300' height='300'>"); 
-  }
-   if( glob($o."heatspearman.png")){
-  echo("<img id='myImg4' src='$o/heatspearman.png' alt='Heatmap Spearman' width='300' height='300'>"); 
-  }
-   if( glob($o."heatpearson.png")){
-  echo("<img id='myImg5' src='$o/heatpearson.png' alt='Heatmap Pearson' width='300' height='300'>"); 
-  }
-   if( glob($o."Rohcluster.png")){
-  echo("<img id='myImg6' src='$o/Rohcluster.png' alt='Clusterdiagramm (Rohdaten)' width='300' height='300'>"); 
-  }
-   if( glob($o."RawDataPCAanalysis.png")){
-  echo("<img id='myImg8' src='$o/RawDataPCAanalysis.png' alt='PCA' width='300' height='300'>"); 
-  }   
-  
-  for($i=1; $i<=$N+1; ++$i){
-    $chiptemp = "chipimage ".$i." .png";
-   if( glob($o.$chiptemp)){
-    $c=8+$i;
-    $tempimage = "myImg".$c;
-  echo("<img id='$tempimage' src='$o/$chiptemp' alt='Chipimage $i' width='300' height='300'>"); 
-  }
-  
-  }   
+if (glob($o . "hist.png")) {
+    echo ("<img id='myImg' src='$o/hist.png' alt='Histogram' width='300' height='300'>");
+}
+if (glob($o . "qualitycontrol.png")) {
+    echo ("<img id='myImg2' src='$o/qualitycontrol.png' alt='Quality Control' width='300' height='300'>");
+}
+if (glob($o . "RNA_Degradation_Plot.png")) {
+    echo ("<img id='myImg3' src='$o/RNA_Degradation_Plot.png' alt='RNA Degradation' width='300' height='300'>");
+}
+if (glob($o . "heatspearman.png")) {
+    echo ("<img id='myImg4' src='$o/heatspearman.png' alt='Heatmap Spearman' width='300' height='300'>");
+}
+if (glob($o . "heatpearson.png")) {
+    echo ("<img id='myImg5' src='$o/heatpearson.png' alt='Heatmap Pearson' width='300' height='300'>");
+}
+if (glob($o . "Rohcluster.png")) {
+    echo ("<img id='myImg6' src='$o/Rohcluster.png' alt='Clusterdiagramm (Rohdaten)' width='300' height='300'>");
+}
+if (glob($o . "RawDataPCAanalysis.png")) {
+    echo ("<img id='myImg8' src='$o/RawDataPCAanalysis.png' alt='PCA' width='300' height='300'>");
+}
+
+for ($i = 1; $i <= $N + 1; ++$i) {
+    $chiptemp = "chipimage " . $i . " .png";
+    if (glob($o . $chiptemp)) {
+        $c         = 8 + $i;
+        $tempimage = "myImg" . $c;
+        echo ("<img id='$tempimage' src='$o/$chiptemp' alt='Chipimage $i' width='300' height='300'>");
+    }
+    
+}
 
 ?>
-      <h3>RMA Normalisierung:</h3>
+     <h3>RMA Normalisierung:</h3>
 <?php
 
-   if( glob($o."rmahist.png")){
-  echo("<img id='myImgrma' src='$o/rmahist.png' alt='Histogramm in RMA Normalisierung' width='300' height='300'>"); 
-  } 
-   if( glob($o."rmacluster.png")){
-  echo("<img id='myImgrma6' src='$o/rmacluster.png' alt='Clusterdiagramm in RMA Normalisierung' width='300' height='300'>"); 
-  } 
-   if( glob($o."rmaheatspearman.png")){
-  echo("<img id='myImgrma4' src='$o/rmaheatspearman.png' alt='Correlationplot Spearman in RMA Normalisierung' width='300' height='300'>"); 
-  } 
-   if( glob($o."rmaheatpearson.png")){
-  echo("<img id='myImgrma7' src='$o/rmaheatpearson.png' alt='Correlationplot Pearson in RMA Normalisierung' width='300' height='300'>"); 
-  } 
+if (glob($o . "rmahist.png")) {
+    echo ("<img id='myImgrma' src='$o/rmahist.png' alt='Histogramm in RMA Normalisierung' width='300' height='300'>");
+}
+if (glob($o . "rmacluster.png")) {
+    echo ("<img id='myImgrma6' src='$o/rmacluster.png' alt='Clusterdiagramm in RMA Normalisierung' width='300' height='300'>");
+}
+if (glob($o . "rmaheatspearman.png")) {
+    echo ("<img id='myImgrma4' src='$o/rmaheatspearman.png' alt='Correlationplot Spearman in RMA Normalisierung' width='300' height='300'>");
+}
+if (glob($o . "rmaheatpearson.png")) {
+    echo ("<img id='myImgrma7' src='$o/rmaheatpearson.png' alt='Correlationplot Pearson in RMA Normalisierung' width='300' height='300'>");
+}
 
 
- 
+
 ?>  
 
       <h3>MAS 5 Normalisierung:</h3>
 <?php
 
-   if( glob($o."mashist.png")){
-  echo("<img id='myImgmas' src='$o/mashist.png' alt='Histogramm in MAS 5 Normalisierung' width='300' height='300'>"); 
-  } 
-   if( glob($o."mascluster.png")){
-  echo("<img id='myImgmas6' src='$o/mascluster.png' alt='Clusterdiagramm in MAS 5 Normalisierung' width='300' height='300'>"); 
-  } 
-   if( glob($o."masheatspearman.png")){
-  echo("<img id='myImgmas4' src='$o/masheatspearman.png' alt='Correlationplot Spearman in MAS 5 Normalisierung' width='300' height='300'>"); 
-  } 
-   if( glob($o."masheatpearson.png")){
-  echo("<img id='myImgmas7' src='$o/masheatpearson.png' alt='Correlationplot Pearson in MAS 5 Normalisierung' width='300' height='300'>"); 
-  } 
+if (glob($o . "mashist.png")) {
+    echo ("<img id='myImgmas' src='$o/mashist.png' alt='Histogramm in MAS 5 Normalisierung' width='300' height='300'>");
+}
+if (glob($o . "mascluster.png")) {
+    echo ("<img id='myImgmas6' src='$o/mascluster.png' alt='Clusterdiagramm in MAS 5 Normalisierung' width='300' height='300'>");
+}
+if (glob($o . "masheatspearman.png")) {
+    echo ("<img id='myImgmas4' src='$o/masheatspearman.png' alt='Correlationplot Spearman in MAS 5 Normalisierung' width='300' height='300'>");
+}
+if (glob($o . "masheatpearson.png")) {
+    echo ("<img id='myImgmas7' src='$o/masheatpearson.png' alt='Correlationplot Pearson in MAS 5 Normalisierung' width='300' height='300'>");
+}
 ?>
-     <h3>Textdateien:</h3>
+    <h3>Textdateien:</h3>
 <?php
-   if( glob($o."affymetrix_mas5.txt")){
-  echo("<a href ='$o/affymetrix_raw.txt' >Textdatei RAW</a>"); 
-  echo("<br>");
-  } 
-   if( glob($o."affymetrix_mas5.txt")){
-  echo("<a href ='$o/affymetrix_mas5.txt' >Textdatei MAS 5</a>"); 
-  echo("<br>");  
-  } 
-   if( glob($o."affymetrix_mas5.txt")){
-  echo("<a href ='$o/affymetrix_rma.txt' >Textdatei RMA</a>"); 
-  echo("<br>");
-  }  
+if (glob($o . "affymetrix_mas5.txt")) {
+    echo ("<a href ='$o/affymetrix_raw.txt' >Textdatei RAW</a>");
+    echo ("<br>");
+}
+if (glob($o . "affymetrix_mas5.txt")) {
+    echo ("<a href ='$o/affymetrix_mas5.txt' >Textdatei MAS 5</a>");
+    echo ("<br>");
+}
+if (glob($o . "affymetrix_mas5.txt")) {
+    echo ("<a href ='$o/affymetrix_rma.txt' >Textdatei RMA</a>");
+    echo ("<br>");
+}
 ?>  
 
 
