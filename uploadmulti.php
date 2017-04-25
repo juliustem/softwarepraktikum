@@ -1,4 +1,4 @@
-	<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -52,45 +52,48 @@ form
   </form>
 
 
-  <?php
-//Fürs Speichern der Variablen, während der Sitzung   
-session_start();
-$_SESSION["gesamt"]   = 0;
-$_SESSION["bool"]     = 0;
-$_SESSION["bool1"]    = 0;
-$_SESSION["bool2"]    = 0;
-$_SESSION["bool3"]    = 0;
-$_SESSION["bool4"]    = 0;
-$_SESSION["bool5"]    = 0;
-$_SESSION["bool6"]    = 0;
-$_SESSION["bool7"]    = 0;
-$_SESSION["bool8"]    = 0;
-$_SESSION["textraw"]  = 0;
+  <?php  
+ //Fürs Speichern der Variablen, während der Sitzung   
+    session_start();
+    $_SESSION["gesamt"]=0;
+    $_SESSION["bool"]=0;
+    $_SESSION["bool1"]=0;
+    $_SESSION["bool2"]=0;
+    $_SESSION["bool3"]=0;
+    $_SESSION["bool4"]=0;
+    $_SESSION["bool5"]=0;
+    $_SESSION["bool6"]=0;
+    $_SESSION["bool7"]=0;  
+    $_SESSION["bool8"]=0;   
+    $_SESSION["textraw"]=0; 
 //RMA Normalisierung    
-$_SESSION["rmabool1"] = 0;
+    $_SESSION["rmabool1"]=0;
 //    $_SESSION["rmabool2"]=0;
-$_SESSION["rmabool3"] = 0;
-$_SESSION["rmabool4"] = 0;
-$_SESSION["rmabool5"] = 0;
-$_SESSION["rmabool6"] = 0;
-$_SESSION["rmabool7"] = 0;
-$_SESSION["rmabool8"] = 0;
-$_SESSION["textrma"]  = 0;
+    $_SESSION["rmabool3"]=0;
+    $_SESSION["rmabool4"]=0;
+    $_SESSION["rmabool5"]=0;
+    $_SESSION["rmabool6"]=0;
+    $_SESSION["rmabool7"]=0;  
+    $_SESSION["rmabool8"]=0;   
+    $_SESSION["textrma"]=0;
 //MAS 5 Normalisierung    
-$_SESSION["masbool1"] = 0;
+    $_SESSION["masbool1"]=0;
 //    $_SESSION["rmabool2"]=0;
-$_SESSION["masbool3"] = 0;
-$_SESSION["masbool4"] = 0;
-$_SESSION["masbool5"] = 0;
-$_SESSION["masbool6"] = 0;
-$_SESSION["masbool7"] = 0;
-$_SESSION["masbool8"] = 0;
-$_SESSION["textmas"]  = 0;
-
+    $_SESSION["masbool3"]=0;
+    $_SESSION["masbool4"]=0;
+    $_SESSION["masbool5"]=0;
+    $_SESSION["masbool6"]=0;
+    $_SESSION["masbool7"]=0;  
+    $_SESSION["masbool8"]=0; 
+    $_SESSION["textmas"]=0;    
+#Anayse
+    $_SESSION["anabool1"]=0; 
+    $_SESSION["anabool2"]=0;    
+  
 if (isset($_POST["s_button"])) {
 } else {
     echo "<br>";
-    echo "<h3> Bereits hochgeladene Experimente </h3>";
+    echo "<h3> Bereits hochgeladene Experimente: </h3>";
     $old_exp     = "upload/";
     $c           = 0;
     $verzeichnis = opendir($old_exp);
@@ -132,49 +135,51 @@ $i                 = 0;
 
 
 foreach ($_FILES as $file):
+   
 //Verzeichnis erstellen
-    $name     = date('d-m-y_h-i-s'); // $name = Ordnername
-    $pre_path = "upload/" . $name . "/";
-    mkdir($pre_path, 0777, true);
-    chmod($pre_path, 0777);
-    $upload_path = $pre_path . "input/";
-    mkdir($upload_path, 0777, true);
-    chmod($upload_path, 0777);
-    
+        $name     = date('d-m-y_h-i-s'); // $name = Ordnername
+        $pre_path = "upload/" . $name . "/";
+        mkdir($pre_path, 0777, true);
+        chmod($pre_path, 0777);
+        $upload_path = $pre_path . "input/";
+        mkdir($upload_path, 0777, true);
+        chmod($upload_path, 0777);
+ 
     
     foreach ($file['name'] as $filename):
         $extension = getExtension($filename);
+        
 ?>	
 <p class="bg-warning">    
 <?php
         if (!in_array($extension, $allowedExtensions)) {
-            echo "<br />Achtung: $filename wird nicht akzeptiert. Format stimmt nicht <br />";
-            echo "<br />";
+           				echo  "<br />Achtung: $filename wird nicht akzeptiert. Format stimmt nicht <br />";
+				        echo "<br />";
             ++$i;
             // Datei überspringen falls Endung nicht erlaubt
             continue;
         }
         
         if ($file['size'][$i] > $maxSize) {
-            echo "<br />Achtung: $filename wird nicht akzeptiert. Datei ist zu groß!<br />";
-            echo "<br />";
+                        echo  "<br />Achtung: $filename wird nicht akzeptiert. Datei ist zu groß!<br />";
+				        echo "<br />";
             ++$i;
             continue;
         }
-        
-?>	
+ 
+ ?>	
 </p>
 
 <p class="bg-success">    
 <?php
-        
+  
         // Datei auf Server speichern
-        if (move_uploaded_file($file['tmp_name'][$i], $upload_path . $filename))
+        if(move_uploaded_file($file['tmp_name'][$i], $upload_path . $filename))
             echo "<br /> ✔ Erfolgreich: $filename<br />";
-        echo "<br />";
+	          	echo "<br />";
 ?>	
 </p>
-<?php
+<?php        
         
         ++$i;
     endforeach;
@@ -184,16 +189,17 @@ foreach ($_FILES as $file):
     foreach ($alledateien as $datei) { //Ausgabeschleife
         echo $datei . "<br />";
     };
-    
-    //Fürs Speichern der Variablen, während der Sitzung    
-    $_SESSION["p_path"]      = $pre_path;
-    $_SESSION["curr_path"]   = $upload_path;
-    $_SESSION["count_files"] = $i;
+  
+  //Fürs Speichern der Variablen, während der Sitzung    
+    $_SESSION["p_path"] = $pre_path;
+    $_SESSION["curr_path"]= $upload_path;
+    $_SESSION["count_files"]= $i;
     $_SESSION["f_name"]      = $name;
     
     echo "<form action='raw.php' method='post' >";
     echo "<input type='submit' value='Weiter zur Auswahl der benötigten Plots' class='btnSubmit_blue' >";
     echo "</form>";
+        
 endforeach;
 ?>
 
