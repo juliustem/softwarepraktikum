@@ -52,10 +52,12 @@ form
         $tmp_folder = "upload/".$folder."/input"."/";
         $handle = opendir($tmp_folder);
         while($file = readdir($handle)){
+            if($file!= "." && $file!= ".." && $file!= ".DS_Store" && $file!= "G1" && $file!= "G2"){
             ++$anz;
           }
+        }
       closedir($handle);
-      return $anz-2; //wegen "." und ".."
+      return $anz; //wegen "." und ".."
       }
 
       // Hilfsfkt Zuordnen in Gruppen
@@ -130,16 +132,35 @@ form
       $_SESSION["oberordner"] = $P;
       $_SESSION["name"] = $F;
 
-
-      if (isset($_POST["ana_button"])){
+      // Abfrage, ob ana button gedrückt wurde
+      if (isset($_POST["ana_button_rma"])){
         $v = group_copy($F);
         $output_path = $_SESSION["p_path"] . "output/";
         $in = $_SESSION["count_files"];
         $p = $_SESSION["curr_path"];
         $p1 = "upload/".$F."/input"."/"."G1/";
         $p2 = "upload/".$F."/input"."/"."G2/";
-        exec("/usr/bin/Rscript fc_slr.R $in $p $output_path $p1 $p2 > /dev/null 2>/dev/null &");
+        $_SESSION["anabool1"] = 1;
+        exec("/usr/bin/Rscript fc_slr_rma.R $in $p $output_path $p1 $p2 > /dev/null 2>/dev/null &");
       }
+
+      // Abfrage, ob ana button gedrückt wurde
+      if (isset($_POST["ana_button_mas"])){
+        $v = group_copy($F);
+        $output_path = $_SESSION["p_path"] . "output/";
+        $in = $_SESSION["count_files"];
+        $p = $_SESSION["curr_path"];
+        $p1 = "upload/".$F."/input"."/"."G1/";
+        $p2 = "upload/".$F."/input"."/"."G2/";
+        $_SESSION["anabool2"] = 1;
+        exec("/usr/bin/Rscript fc_slr_mas.R $in $p $output_path $p1 $p2 > /dev/null 2>/dev/null &");
+      }
+
+
+      $out = "upload/".$F."/output"."/";
+      $ana_var1 = $_SESSION["anabool1"];
+      $ana_var2 = $_SESSION["anabool2"];
+
 
       ?>
 
@@ -152,10 +173,72 @@ form
           <div id="bodyContentContainer">
 
 
-      <!-- Button für Analyse -->
-          <form action='ana.php' method='post' >
-          <input style="width: 300px;" type='submit' name='ana_button' value='Tabelle mit FC und SLR' class='btnSubmit' >
-          </form>
+        <!-- Button für Refresh der Seite -->
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' value='Status der Plots updaten' class='btnSubmit5' >
+            </form>
+
+
+            <!-- Buttons Ana RMA -->
+            <?php
+
+            if( glob($out."FC_SLR_rma.txt")){
+            ?>
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' name='ana_button_rma' value='Foldchange und SLR (RMA)' class='btnSubmitgreen' >
+            </form>
+            <?php
+
+            }
+
+            elseif($ana_var1==1){
+            ?>
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' name='ana_button_rma' value='Foldchange und SLR (RMA)' class='btnSubmityellow' >
+            </form>
+
+            <?php
+            }
+
+             else{
+            ?>
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' name='ana_button_rma' value='Foldchange und SLR (RMA)' class='btnSubmit' >
+            </form>
+            <?php
+             }
+            ?>
+
+
+            <!-- Buttons Ana MAS -->
+            <?php
+
+            if( glob($out."FC_SLR_mas.txt")){
+            ?>
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' name='ana_button_mas' value='Foldchange und SLR (MAS5)' class='btnSubmitgreen' >
+            </form>
+            <?php
+
+            }
+
+            elseif($ana_var2==1){
+            ?>
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' name='ana_button_mas' value='Foldchange und SLR (MAS5)' class='btnSubmityellow' >
+            </form>
+
+            <?php
+            }
+
+             else{
+            ?>
+            <form action='ana.php' method='post' >
+            <input style="width: 300px;" type='submit' name='ana_button_mas' value='Foldchange und SLR (MAS5)' class='btnSubmit' >
+            </form>
+            <?php
+             }
+            ?>
 
 
   </div>
