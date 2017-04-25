@@ -31,7 +31,7 @@ ma1 <- (exprs(mas1))
 setwd('..')
 setwd('..')
 setwd('output')
-write.table(rm1, "G1_mas.txt", 
+write.table(ma1, "G1_mas.txt", 
             sep="\t", row.names=T, col.names=T, quote=F)
 setwd('..')
 setwd('input/G2/')
@@ -41,7 +41,7 @@ ma2 <- (exprs(mas2))
 setwd('..')
 setwd('..')
 setwd('output')
-write.table(rm2, "G2_mas.txt", 
+write.table(ma2, "G2_mas.txt", 
             sep="\t", row.names=T, col.names=T, quote=F)
 
 Data1 <- read.table("G1_mas.txt", header=TRUE)
