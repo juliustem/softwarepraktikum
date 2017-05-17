@@ -390,23 +390,23 @@ if( glob($o."hist.png")){
      <h3>Textdateien:</h3>
 <?php
    if( glob($o."affymetrix_raw.txt")){
-  echo("<a href ='$o/affymetrix_raw.txt' >Textdatei RAW</a>"); 
+  echo("<a href ='$o/affymetrix_raw.txt' target='_blank'>Textdatei RAW</a>"); 
   echo("<br>");
   } 
    if( glob($o."affymetrix_mas5.txt")){
-  echo("<a href ='$o/affymetrix_mas5.txt' >Textdatei MAS 5</a>"); 
+  echo("<a href ='$o/affymetrix_mas5.txt' target='_blank'>Textdatei MAS 5</a>"); 
   echo("<br>");  
   } 
    if( glob($o."affymetrix_mas5.txt")){
-  echo("<a href ='$o/affymetrix_rma.txt' >Textdatei RMA</a>"); 
+  echo("<a href ='$o/affymetrix_rma.txt' target='_blank' >Textdatei RMA</a>"); 
   echo("<br>");
   }  
    if( glob($o."fc_slr_rma.txt")){
-  echo("<a href ='$o/fc_slr_rma.txt' >Textdatei Analyse SLR und Fc RMA</a>"); 
+  echo("<a href ='$o/fc_slr_rma.txt'  target='_blank'>Textdatei Analyse SLR und Fc RMA</a>"); 
   echo("<br>");
   }  
    if( glob($o."fc_slr_mas.txt")){
-  echo("<a href ='$o/fc_slr_mas.txt' >Textdatei Analyse SLR und Fc MAS5</a>"); 
+  echo("<a href ='$o/fc_slr_mas.txt' target='_blank'>Textdatei Analyse SLR und Fc MAS5</a>"); 
   echo("<br>");
   }  
 

@@ -26,29 +26,28 @@ library(gtools)
 
 setwd(P1)
 G1 <- ReadAffy()
-mas1 <- mas5(G1)
-ma1 <- (exprs(mas1)) 
+#RMA
+rma1 <- rma(G1)
+rm1 <- (exprs(rma1)) 
 setwd('..')
 setwd('..')
 setwd('output')
-write.table(ma1, "G1_mas.txt", 
+write.table(rm1, "G1_rma.txt", 
             sep="\t", row.names=T, col.names=T, quote=F)
 setwd('..')
 setwd('input/G2/')
 G2 <- ReadAffy()
-mas2 <- mas5(G2)
-ma2 <- (exprs(mas2))
+#RMA
+rma2 <- rma(G2)
+rm2 <- (exprs(rma2)) 
 setwd('..')
 setwd('..')
 setwd('output')
-write.table(ma2, "G2_mas.txt", 
+write.table(rm2, "G2_rma.txt", 
             sep="\t", row.names=T, col.names=T, quote=F)
 
-Data1 <- read.table("G1_mas.txt", header=TRUE)
-Data2 <- read.table("G2_mas.txt", header=TRUE)
-
-#setwd("/Applications/XAMPP/xamppfiles/htdocs/Softwarepraktikum/jquery/upload/09-05-17_05-20-34/output")
-#go <-read.table("SLR_max_Top15_RMA.txt", header = TRUE)
+Data1 <- read.table("G1_rma.txt", header=TRUE)
+Data2 <- read.table("G2_rma.txt", header=TRUE)
 
 m1 <- apply(Data1, 1, FUN=mean)
 m2 <- apply(Data2, 1, FUN=mean)
@@ -74,8 +73,8 @@ f_list <- c()
 
 for (i in 1:n1){
   for (j in 1:n2){
-    d1 <- log2(Data1[,i])
-    d2 <- log2(Data2[,j])   
+    d1 <- (Data1[,i])
+    d2 <- (Data2[,j])   
     d_tab <- cbind(d1,d2) 
     slr <- apply(d_tab,1,FUN=diff)
     #f <- foldchange(Data1[,i],Data2[,j])
@@ -93,9 +92,9 @@ fc <- logratio2foldchange(slr, base=2)
 #fc <- foldchange(m1, m2)
 #slr <- foldchange2logratio(fmean_list, base=2)
 
-result <- cbind(Foldchange=fmean_list, Logratio=slr,"Mittelwert_G1"=m1,"Mittelwert_G2"=m2,
+result <- cbind(Foldchange=fc, SLR=slr,Mittelwert_G1=m1,"Mittelwert_G2"=m2,
                 "Max_G1"=m1max, "Max_G2"=m2max, "Min_G1"=m1min, "Min_G2"=m2min,
                 "Stdabw_G1"=m1stdabw, "Stdabw_G2"=m2stdabw)
 
-write.table(result, "FC_SLR_mas.txt", sep="\t", row.names=T, col.names=T, quote=F)
+write.table(result, "FC_SLR_rma.txt", sep="\t", row.names=T, col.names=T, quote=F)
 

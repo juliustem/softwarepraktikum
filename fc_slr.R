@@ -64,3 +64,4 @@ slr <- foldchange2logratio(fc, base=2)
 result <- cbind(Foldchange=fc, Logratio=slr)
 
 write.table(result, "FC_SLR_rma.txt", sep="\t", row.names=T, col.names=T, quote=F)
+
