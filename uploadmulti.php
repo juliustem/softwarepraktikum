@@ -90,7 +90,7 @@ form
     $_SESSION["anabool1"]=0; 
     $_SESSION["anabool2"]=0;    
   
-if (isset($_POST["s_button"])) {
+if (isset($_POST["u_button"])) {
 } else {
     echo "<br>";
     echo "<h3> Bereits hochgeladene Experimente: </h3>";
